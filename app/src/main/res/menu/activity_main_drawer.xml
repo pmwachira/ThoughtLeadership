@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:title="Menu">
+            <menu>
+ <item android:id="@+id/nav_insights" android:icon="@android:drawable/ic_menu_view"
+            android:title="Insights" />
+
+        <item android:id="@+id/nav_industries" android:icon="@android:drawable/ic_menu_preferences"
+            android:title="Industries" />
+                <item android:id="@+id/nav_interest" android:icon="@android:drawable/ic_input_add"
+                    android:title="Topics of Interest" />
+    <item android:id="@+id/nav_service" android:icon="@android:drawable/ic_popup_disk_full"
+        android:title="Services" />
+
+    <!--<item android:id="@+id/nav_events" android:icon="@android:drawable/ic_menu_my_calendar"-->
+        <!--android:title="Events" />-->
+
+
+    <item android:id="@+id/nav_careers" android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Careers" />
+
+
+
+    <item android:id="@+id/nav_about" android:icon="@android:drawable/ic_menu_help"
+        android:title="About Us" />
+    <item android:id="@+id/nav_contact" android:icon="@android:drawable/ic_menu_call"
+        android:title="Contact" />
+</menu>
+    </item>
+    </group>
+    <group android:id="@+id/others">
+
+        <!--<item-->
+            <!--android:title="Favourites"-->
+            <!--android:id="@+id/nav_favourites">-->
+        <!--</item>-->
+        <!--<item-->
+            <!--android:title="My downloads"-->
+            <!--android:id="@+id/nav_downloads">-->
+        <!--</item>
+
+        Credentials
+
+        -->
+        <item
+        android:title="Lead Profiles"
+        android:id="@+id/nav_cred">
+    </item>
+        <item
+            android:title="Your Downloads"
+            android:id="@+id/nav_d">
+        </item>
+        <item
+            android:title="Disclaimer"
+            android:id="@+id/nav_disclaimer">
+        </item>
+
+    </group>
+    </menu>
+
+
+
+
+
+
+

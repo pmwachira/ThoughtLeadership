@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">KPMG Kenya</string>
+    
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="about">    Our East Africa practice comprises Kenya, Uganda, Tanzania and Rwanda. There are 21 Partners and more than 1,000 professional staff who provide a full range of services to organisations in the region. KPMG East Africa has considerable experience in audit, tax and advisory services. The Nairobi office serves as the regional co-ordinating office providing the required networking to facilitate delivery of services on a timely basis to meet and exceed our clients’ expectations. The firm’s involvement in Kenya goes back to 1949 when it operated as Angus, Lawrie and Jeremy. In 1965, the name of the firm changed to Peat Marwick, Mitchell and Co. The firm operated as such until 1989, when, as a result of the international merger between Peat Marwick International and Klynveld Main Goerdeler, KPMG was created. Regional expansion came in 1995 with the setting up of offices in Dar-es-Salaam and Kampala. In August 2010, KPMG made its re-entry into Rwanda setting up a fully fledged office. KPMG has gained recognition as a leading provider of audit, tax and advisory services throughout the East Africa region.
+
+    </string>
+    <string name="audit_dec">KPMG’s Audit practices help organizations and individuals achieve their objectives and succeed in the new economy through measuring performance, managing risks, and leveraging knowledge.</string>
+    <string name="tax_desc">Effective tax advice and planning can give your business a competitive advantage. KPMG offers a range of Tax services which are designed to offer clients progressive tax planning.</string>
+    <string name="advisory_desc">Advisory works with clients to tackle challenges in transactions and restructuring, performance and technology and risk consulting.</string>
+    <string name="service_desc">KPMG in East Africa provides audit, tax and advisory services and industry insight to help organizations negotiate risks and perform in the dynamic and challenging environments in which they do business.</string>
+</resources>
