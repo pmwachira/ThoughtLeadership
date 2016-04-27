@@ -41,7 +41,7 @@ public class Home  extends AppCompatActivity
         art= (TextView) findViewById(R.id.art);
         art.setTypeface(typeface);
         ser= (TextView) findViewById(R.id.serv);
-        ser.setTypeface(typeface);
+       ser.setTypeface(typeface);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);

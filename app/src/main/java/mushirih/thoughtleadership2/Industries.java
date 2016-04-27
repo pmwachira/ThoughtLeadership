@@ -47,6 +47,7 @@ public class Industries extends AppCompatActivity implements RecyclerViewAdapter
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Industries");
 
+
         recyclerView= (RecyclerView) findViewById(R.id.recycler);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 

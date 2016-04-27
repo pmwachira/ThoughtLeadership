@@ -20,11 +20,12 @@ import java.lang.reflect.Field;
  * Created by p-tah on 22/02/2016.
  */
 public class Email extends AppCompatActivity {
-    String[] email_addresses = {"Reception","Data & Analytics", "Human Resource", "Marketing", "Enquiries"};
+    String[] email_addresses = {"Advisory","Audit services", "Tax", "Careers", "Other"};
     Spinner spinnerDropdown;
     String sendTo="";
     String name="";
     String companyEmail="info@kpmg.co.ke";
+    EditText opt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class Email extends AppCompatActivity {
         // themeUtils.onActivityCreateSetTheme(this);
         setContentView(R.layout.email);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolem);
+        opt= (EditText) findViewById(R.id.etop);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -59,12 +61,20 @@ public class Email extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 final int sid = spinnerDropdown.getSelectedItemPosition();
+                if (sid != 4) {
+                    opt.setVisibility(View.GONE);
+                }
 
                 switch (sid) {
                     case 0:
                         sendTo = "mushirih@gmail.com";
                         break;
                     case 1:
+                        sendTo = "pmwachira@gmail.com";
+                        break;
+                    case 4:
+
+                        opt.setVisibility(View.VISIBLE);
                         sendTo = "pmwachira@gmail.com";
                         break;
                     default:
@@ -90,38 +100,38 @@ public class Email extends AppCompatActivity {
                 // String sendTo=email_addresses[sid];
                 TextView head = (TextView) findViewById(R.id.ettitle);
                 TextView mail = (TextView) findViewById(R.id.etmail);
-               EditText namei= (EditText) findViewById(R.id.etname);
-                name=namei.getText().toString();
-                if(name.isEmpty()){
-                    name="a client";
+                EditText namei = (EditText) findViewById(R.id.etname);
+                name = namei.getText().toString();
+                if (name.isEmpty()) {
+                    name = "a client";
                 }
                 String heading = head.getText().toString();
-                if(heading.isEmpty()){
-                    heading="Enquiries";
+                if (heading.isEmpty()) {
+                    heading = "Enquiries";
                 }
                 String mailing = mail.getText().toString();
                 Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:")); // it's not ACTION_SEND
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{sendTo}); // or just "mailto:" for blank
                 intent.putExtra(Intent.EXTRA_SUBJECT, heading);
-                intent.putExtra(Intent.EXTRA_TEXT,"Message from : "+name+"\n\n"+ mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+                intent.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
-                try{
+                try {
                     intent.setPackage("com.google.android.gm");
-                }catch (Exception e){
+                } catch (Exception e) {
 
 
                     Intent intent2 = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
                     intent2.setType("text/plain");
                     intent2.putExtra(Intent.EXTRA_SUBJECT, heading);
-                    intent2.putExtra(Intent.EXTRA_TEXT,"Message from : "+name+"\n\n"+ mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+                    intent2.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
                     intent2.setData(Uri.parse("mailto:" + sendTo)); // or just "mailto:" for blank
                     intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
                     startActivity(intent2);
                 }
                 startActivity(intent);
-               // Toast.makeText(getApplicationContext(),"Opening your emailing application",Toast.LENGTH_LONG).show();
-               // startActivity(new Intent(getBaseContext(), Connect.class));
+                // Toast.makeText(getApplicationContext(),"Opening your emailing application",Toast.LENGTH_LONG).show();
+                // startActivity(new Intent(getBaseContext(), Connect.class));
 
             }
         });
