@@ -49,6 +49,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/imageView3" />
     <LinearLayout
+        android:id="@+id/dwn"
+        android:visibility="gone"
         android:onClick="downloadPDF"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -56,6 +58,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <ImageView
+
             android:layout_gravity="center_horizontal"
             android:src="@drawable/pdf"
             android:layout_width="40dp"
@@ -85,7 +88,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
         android:id="@+id/title" />
-<LinearLayout
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <TextView
@@ -95,29 +98,32 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Article By"
         android:id="@+id/owner" />
+
     <TextView
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/sep"
+        android:layout_below="@+id/owner"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="|"
          />
     <TextView
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginLeft="8dp"
+       android:layout_toRightOf="@+id/sep"
+        android:layout_below="@+id/owner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Thursday, 28 January 2016"
         android:id="@+id/date" />
-</LinearLayout>
+</RelativeLayout>
 </LinearLayout>
 
     <TextView
         android:layout_marginBottom="8dp"
         android:textColor="#000"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

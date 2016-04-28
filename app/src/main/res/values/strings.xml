@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">KPMG Kenya</string>
-    
+    <string name="app_name_action_bar">East Africa</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -12,4 +12,5 @@
     <string name="tax_desc">Effective tax advice and planning can give your business a competitive advantage. KPMG offers a range of Tax services which are designed to offer clients progressive tax planning.</string>
     <string name="advisory_desc">Advisory works with clients to tackle challenges in transactions and restructuring, performance and technology and risk consulting.</string>
     <string name="service_desc">KPMG in East Africa provides audit, tax and advisory services and industry insight to help organizations negotiate risks and perform in the dynamic and challenging environments in which they do business.</string>
+    <string name="download_link_footer">\n\n\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en</string>
 </resources>

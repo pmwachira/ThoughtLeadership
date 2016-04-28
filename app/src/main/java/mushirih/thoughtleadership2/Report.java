@@ -16,6 +16,7 @@ import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,7 +42,7 @@ public class Report extends AppCompatActivity {
     String download,title;
     ProgressDialog pDialog;
     String videoPath="";
-
+   LinearLayout dwn;
     public static final int progress_bar_type=0;//set progress bar to horizontal
     NotificationManager nM;
     int downloadError=0;
@@ -52,6 +53,7 @@ public class Report extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbb);
+        dwn= (LinearLayout) findViewById(R.id.dwn);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -60,6 +62,9 @@ public class Report extends AppCompatActivity {
         final String content=getIntent().getStringExtra("content");
         String owner=getIntent().getStringExtra("owner");
          download=getIntent().getStringExtra("download");
+        if(!download.isEmpty()){
+            dwn.setVisibility(View.VISIBLE);
+        }
         titlE= (TextView) findViewById(R.id.title);
         titlE.setText(title);
         contenT= (TextView) findViewById(R.id.content);
@@ -74,8 +79,16 @@ public class Report extends AppCompatActivity {
                 Intent send = new Intent(Intent.ACTION_SEND);
                 send.setType("text/plain");
 
-                send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content);
+
+                //CHECK IF TO SENT IS GREATER THAN 4200
+                if(content.length()>3840){
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content.subSequence(0,3840)+"...(Read more on our mobile app)"+ getString(R.string.download_link_footer));
+                }else{
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content + getString(R.string.download_link_footer));
+                }
                 startActivity(Intent.createChooser(send, "Share article using.."));
+
+
             }
         });
 

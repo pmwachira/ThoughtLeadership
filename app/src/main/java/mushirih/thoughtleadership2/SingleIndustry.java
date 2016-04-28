@@ -17,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.SearchView;
@@ -29,6 +30,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,6 +75,7 @@ public class SingleIndustry extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
+        final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
         mProvider = new DrawableProvider(this);
         desc= (TextView) findViewById(R.id.desc);
@@ -134,10 +137,16 @@ public class SingleIndustry extends AppCompatActivity
                     pDialog.dismiss();
 
                     listView.setAdapter(new SampleAdapter());
+                    if(listView.getAdapter().getCount()==0){
+                        Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                    }
                 }
             };
-            handler.postDelayed(r,5000);
+            handler.postDelayed(r, 5000);
+
         }
+
         listView.setOnItemClickListener(this);
 
     }
@@ -348,8 +357,8 @@ public class SingleIndustry extends AppCompatActivity
             private ViewHolder(View v){
                 imageView = (ImageView) v.findViewById(R.id.imageView);
                 textview = (TextView) v.findViewById(R.id.textView);
-                download= (ImageView) v.findViewById(R.id.downloadable);
-                filesize= (TextView) v.findViewById(R.id.filesize);
+               // download= (ImageView) v.findViewById(R.id.downloadable);
+               // filesize= (TextView) v.findViewById(R.id.filesize);
             }
 
         }
@@ -456,8 +465,8 @@ public class SingleIndustry extends AppCompatActivity
             private ViewHolder(View v){
                 imageView = (ImageView) v.findViewById(R.id.imageView);
                 textview = (TextView) v.findViewById(R.id.textView);
-                download= (ImageView) v.findViewById(R.id.downloadable);
-                filesize= (TextView) v.findViewById(R.id.filesize);
+               // download= (ImageView) v.findViewById(R.id.downloadable);
+             //   filesize= (TextView) v.findViewById(R.id.filesize);
             }
 
         }

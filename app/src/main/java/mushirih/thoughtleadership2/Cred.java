@@ -47,7 +47,7 @@ public class Cred extends AppCompatActivity {
                 Intent intent2 = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
                 intent2.setType("text/plain");
 
-                intent2.putExtra(Intent.EXTRA_TEXT, "\n\n\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+                intent2.putExtra(Intent.EXTRA_TEXT, getString(R.string.download_link_footer));
                 intent2.setData(Uri.parse("mailto:" + email)); // or just "mailto:" for blank
                 intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
                 startActivity(intent2);

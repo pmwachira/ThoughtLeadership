@@ -31,17 +31,17 @@ public class Home  extends AppCompatActivity
        typeface=Typeface.createFromAsset(getBaseContext().getAssets(),"KPMGAppExtraLight.ttf");
 
         cont= (TextView) findViewById(R.id.cont);
-        cont.setTypeface(typeface);
+        //cont.setTypeface(typeface);
         abou= (TextView) findViewById(R.id.abou);
-        abou.setTypeface(typeface);
+        //abou.setTypeface(typeface);
         eve= (TextView) findViewById(R.id.eve);
-        eve.setTypeface(typeface);
+        //eve.setTypeface(typeface);
         ind= (TextView) findViewById(R.id.ind);
-        ind.setTypeface(typeface);
+        //ind.setTypeface(typeface);
         art= (TextView) findViewById(R.id.art);
-        art.setTypeface(typeface);
+        //art.setTypeface(typeface);
         ser= (TextView) findViewById(R.id.serv);
-       ser.setTypeface(typeface);
+       //ser.setTypeface(typeface);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);
@@ -171,7 +171,12 @@ public class Home  extends AppCompatActivity
         }else if(id==R.id.nav_d){
             startActivity(new Intent(getBaseContext(),DIR.class));
         }else if(id==R.id.nav_disclaimer){
-            new android.app.AlertDialog.Builder(Home.this).setIcon(R.drawable.icon).setTitle("Dislaimer").setMessage("").setPositiveButton("OK,Got it", new DialogInterface.OnClickListener() {
+            new android.app.AlertDialog.Builder(Home.this).setIcon(R.drawable.icon).setTitle("Dislaimer").setMessage("KPMG is a" +
+                            " global network of professional firms providing Audit, Tax and Advisory services. We operate in 155 " +
+                            "countries and have more than 174,000 people working in member firms around the world. The independent" +
+                            " member firms of the KPMG network are affiliated with KPMG International Cooperative (“KPMG International”)" +
+                            ", a Swiss entity. Each KPMG firm is a legally distinct and separate entity and describes itself as such."+
+                        "The views and opinions are those of the author and do not necessarily represent the views and opinions of KPMG.").setPositiveButton("OK,Got it", new DialogInterface.OnClickListener() {
 
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

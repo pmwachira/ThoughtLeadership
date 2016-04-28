@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -75,6 +76,21 @@ public class MainActivity extends AppCompatActivity
         mProvider = new DrawableProvider(this);
         listView= (ListView) findViewById(R.id.listView);
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.shhhhhwipe);
+        swipe.setEnabled(false);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                listView.setPadding(0,4,0,0);
+                swipe.setEnabled(firstVisibleItem==0? true:false);
+              //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
+            }
+        });
+
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                        @Override
                                        public void onRefresh() {
@@ -85,6 +101,7 @@ public class MainActivity extends AppCompatActivity
                                            swipe.setRefreshing(false);
                                        }
                                    });
+
         desc= (TextView) findViewById(R.id.desc);
         if(desc.getText().equals(null)){
             desc.setVisibility(View.GONE);
@@ -337,18 +354,20 @@ public class MainActivity extends AppCompatActivity
             if(item.getNavigationInfo()!=DataSource.NO_NAVIGATION &&
                     item.getLabel()!="No item matches your search"){
 
-                holder.filesize.setText("88 KB");
-                holder.download.setImageResource(R.drawable.download);
+//                holder.filesize.setText("88 KB");
+//                holder.download.setImageResource(R.drawable.download);
             }else{
                 holder.textview.setCompoundDrawablesWithIntrinsicBounds(null,null,
                         null,null);
-            }
+            }/*
+
             holder.download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                    downloadPDF(item);
                 }
             });
+            */
             /*
             if(drawable instanceof AnimationDrawable){
                 holder.imageView.post(new Runnable() {
@@ -369,13 +388,13 @@ public class MainActivity extends AppCompatActivity
         private class ViewHolder {
             public ImageView imageView;
             public TextView textview;
-            public ImageView download;
-            public TextView filesize;
+            //public ImageView download;
+            //public TextView filesize;
             private ViewHolder(View v){
                 imageView = (ImageView) v.findViewById(R.id.imageView);
                 textview = (TextView) v.findViewById(R.id.textView);
-                download= (ImageView) v.findViewById(R.id.downloadable);
-                filesize= (TextView) v.findViewById(R.id.filesize);
+                //download= (ImageView) v.findViewById(R.id.downloadable);
+               // filesize= (TextView) v.findViewById(R.id.filesize);
             }
 
         }
@@ -452,18 +471,20 @@ public class MainActivity extends AppCompatActivity
 //if original code has children options.................................use to check downloadable
             if(item.getNavigationInfo()!=DataSource.NO_NAVIGATION){
 
-                holder.filesize.setText("88 KB");
-                holder.download.setImageResource(R.drawable.download);
+               // holder.filesize.setText("88 KB");
+               // holder.download.setImageResource(R.drawable.download);
             }else{
                 holder.textview.setCompoundDrawablesWithIntrinsicBounds(null, null,
                         null, null);
             }
+            /*
             holder.download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     downloadPDF(item);
                 }
             });
+            */
             /*
             if(drawable instanceof AnimationDrawable){
                 holder.imageView.post(new Runnable() {
@@ -485,12 +506,12 @@ public class MainActivity extends AppCompatActivity
             public ImageView imageView;
             public TextView textview;
             public ImageView download;
-            public TextView filesize;
+            //public TextView filesize;
             private ViewHolder(View v){
                 imageView = (ImageView) v.findViewById(R.id.imageView);
                 textview = (TextView) v.findViewById(R.id.textView);
-                download= (ImageView) v.findViewById(R.id.downloadable);
-                filesize= (TextView) v.findViewById(R.id.filesize);
+               // download= (ImageView) v.findViewById(R.id.downloadable);
+                //filesize= (TextView) v.findViewById(R.id.filesize);
             }
 
         }
