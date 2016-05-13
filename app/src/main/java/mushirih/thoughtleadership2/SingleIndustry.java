@@ -71,6 +71,7 @@ public class SingleIndustry extends AppCompatActivity
     String URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
     private SearchView mSearchView;
     String industries="";
+    LinearLayout test;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,26 +83,18 @@ public class SingleIndustry extends AppCompatActivity
         desc.setTextColor(Color.BLACK);
         desc.setTextSize(20);
 
+
         try {
         Intent intent = getIntent();
             industries = intent.getStringExtra("industries");
-            desc.setText(industries);
-           // if (industries.equals("")) {
-                desc.setVisibility(View.GONE);
 
-           // }
+
         }catch (Exception e){
             industries="";
-            desc.setVisibility(View.GONE);
+
         }
+        toolbarinit(industries);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-            getSupportActionBar().setTitle("News");
 
 
         nM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -120,6 +113,8 @@ public class SingleIndustry extends AppCompatActivity
 
 
         listView= (ListView) findViewById(R.id.listView);
+
+
         dataSource=new DataSource(this,URL_FEED);
 
         listView.setAdapter(new SampleAdapter());
@@ -127,6 +122,7 @@ public class SingleIndustry extends AppCompatActivity
             pDialog = new ProgressDialog(context);
 
             pDialog.setMessage("Loading articles.Please wait ...");
+            pDialog.setCancelable(false);
 //            pDialog.setIndeterminate(true);
 //              pDialog.setCancelable(false);
             pDialog.show();
@@ -138,8 +134,11 @@ public class SingleIndustry extends AppCompatActivity
 
                     listView.setAdapter(new SampleAdapter());
                     if(listView.getAdapter().getCount()==0){
+                        test.setBackgroundResource(R.drawable.error);
                         Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
                                 .setAction("Action", null).show();
+                       // startActivity(new Intent(getBaseContext(),Industries.class));
+
                     }
                 }
             };
@@ -149,6 +148,19 @@ public class SingleIndustry extends AppCompatActivity
 
         listView.setOnItemClickListener(this);
 
+    }
+
+    private void toolbarinit(String industries) {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if(industries!=null) {
+
+            getSupportActionBar().setTitle(industries + " News");
+        }else{
+            getSupportActionBar().setTitle("Industry News");
+        }
     }
 
     @Override
@@ -320,8 +332,8 @@ public class SingleIndustry extends AppCompatActivity
 
             if(item.getNavigationInfo()!=DataSource.NO_NAVIGATION && item.getLabel()!="No item matches your search"){
 
-                holder.filesize.setText("88 KB");
-                holder.download.setImageResource(R.drawable.download);
+              //  holder.filesize.setText("88 KB");
+                //holder.download.setImageResource(R.drawable.download);
             }else{
                 holder.textview.setCompoundDrawablesWithIntrinsicBounds(null,null,
                         null,null);
@@ -430,19 +442,20 @@ public class SingleIndustry extends AppCompatActivity
 //if original code has children options..............................................................use to check downloadable
             if(item.getNavigationInfo()!=DataSource.NO_NAVIGATION){
 
-                holder.filesize.setText("88 KB");
-                holder.download.setImageResource(R.drawable.download);
+              //  holder.filesize.setText("88 KB");
+               // holder.download.setImageResource(R.drawable.download);
             }else{
                 holder.textview.setCompoundDrawablesWithIntrinsicBounds(null, null,
                         null, null);
             }
+             /*
             holder.download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     downloadPDF(item);
                 }
             });
-            /*
+
             if(drawable instanceof AnimationDrawable){
                 holder.imageView.post(new Runnable() {
                     @Override

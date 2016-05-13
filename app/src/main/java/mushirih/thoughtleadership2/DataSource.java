@@ -115,7 +115,7 @@ public class DataSource {
 
 
 
-                mDataSource.add(itemwithname(jsonObj.getString("title"),jsonObj.getString("content"),reg,jsonObj.getString("owner"),displaypic,jsonObj.getString("link")));
+                mDataSource.add(itemwithname(jsonObj.getString("title"),jsonObj.getString("content"),reg,jsonObj.getString("owner"),displaypic,jsonObj.getString("link"),jsonObj.getString("name"),jsonObj.getString("email"),jsonObj.getString("workTitle")));
     Log.d("CHECK",jsonObj.getString("link"));
             }
 
@@ -199,7 +199,7 @@ public class DataSource {
         return new DataItem(label,content,region,owner,downloadUrl, drawable);
     }
     */
-    private DataItem itemwithname(String name, String content, String region, String owner,String displaypic, String download) {
+    private DataItem itemwithname(String name, String email, String workTitle, String content, String region, String owner, String displaypic, String download, String title) {
         String label = null;
 
         String myContent=null;
@@ -219,7 +219,7 @@ public class DataSource {
 
 
 
-        return new DataItem(label,myContent,myRegion,owneR,downloadUrl, displayPic);
+        return new DataItem(label,myContent,myRegion,owneR,downloadUrl, displayPic,name,email,workTitle);
     }
 
 

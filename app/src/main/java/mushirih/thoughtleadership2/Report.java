@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -48,10 +49,12 @@ public class Report extends AppCompatActivity {
     int downloadError=0;
     String file;
     final static int uniqueID=67900870;
+    Typeface typeface;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report);
+        typeface= Typeface.createFromAsset(getBaseContext().getAssets(), "KPMGAppExtraLight.ttf");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbb);
         dwn= (LinearLayout) findViewById(R.id.dwn);
         setSupportActionBar(toolbar);
@@ -66,9 +69,12 @@ public class Report extends AppCompatActivity {
             dwn.setVisibility(View.VISIBLE);
         }
         titlE= (TextView) findViewById(R.id.title);
+        titlE.setTypeface(typeface);
+
         titlE.setText(title);
         contenT= (TextView) findViewById(R.id.content);
         contenT.setText(content);
+
         owneR= (TextView) findViewById(R.id.owner);
         owneR.setText(owner);
 
@@ -81,8 +87,8 @@ public class Report extends AppCompatActivity {
 
 
                 //CHECK IF TO SENT IS GREATER THAN 4200
-                if(content.length()>3840){
-                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content.subSequence(0,3840)+"...(Read more on our mobile app)"+ getString(R.string.download_link_footer));
+                if(content.length()>3800){
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content.subSequence(0,3800)+"...(Read more on our mobile app)"+ getString(R.string.download_link_footer));
                 }else{
                     send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content + getString(R.string.download_link_footer));
                 }
@@ -270,5 +276,25 @@ public class Report extends AppCompatActivity {
                 return null;
         }
 
+    }
+
+    public void openEmail(View v){
+        String heading = "";
+        if (heading.isEmpty()) {
+            heading = "Reply on your \'"+title+"\' article";
+        }
+
+        Intent intent = new Intent(Intent.ACTION_SEND, Uri.parse("mailto:")); // it's not ACTION_SEND
+        intent.setType("message/rfc822");
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"pmwachia@gmail.com"}); // or just "mailto:" for blank
+        intent.putExtra(Intent.EXTRA_SUBJECT, heading);
+        intent.putExtra(Intent.EXTRA_TEXT, "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+
+        startActivity(intent);
+    }
+    public void openWebsite(View v){
+        Intent web = new Intent(Intent.ACTION_VIEW, Uri.parse("http://kpmg.com/eastafrica/en/Pages/default.aspx"));
+        startActivity(web);
     }
 }

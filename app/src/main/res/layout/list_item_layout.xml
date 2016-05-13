@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="horizontal"
         android:padding="8dp"
@@ -34,8 +35,5 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:id="@+id/textView"/>
-
 </LinearLayout>
-
-
-    </LinearLayout>
+</LinearLayout>

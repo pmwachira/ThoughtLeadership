@@ -11,15 +11,20 @@ public class DataItem {
     private String downloadUrl;
     private String drawable;
     private int navigationInfo;
+    private String name;
+    private String email;
+    private String workTitle;
 
-    public DataItem(String label,String content,String region,String owner,String downloadUrl, String drawable){
+    public DataItem(String label, String content, String region, String owner, String downloadUrl, String drawable,String name, String email, String workTitle ){
         this.label=label;
         this.content=content;
         this.drawable=drawable;
         this.region=region;
         this.owner=owner;
         this.downloadUrl=downloadUrl;
-        this.navigationInfo=navigationInfo;
+        this.name=name;
+        this.email=email;
+        this.workTitle=workTitle;
 
     }
 
@@ -50,6 +55,16 @@ public class DataItem {
 
     public String getOwner() {
         return owner;
+    }
+    public String name(){
+        return name;
+    }
+    public String email(){
+        return email;
+    }
+
+    public String getWorkTitle() {
+        return workTitle;
     }
 
 }

@@ -133,6 +133,7 @@ public class Email extends AppCompatActivity {
                 // Toast.makeText(getApplicationContext(),"Opening your emailing application",Toast.LENGTH_LONG).show();
                 // startActivity(new Intent(getBaseContext(), Connect.class));
 
+
             }
         });
 

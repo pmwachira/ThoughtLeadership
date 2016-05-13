@@ -16,6 +16,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
@@ -30,6 +31,7 @@ import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +73,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
+        final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
 
         mProvider = new DrawableProvider(this);
@@ -95,7 +98,6 @@ public class MainActivity extends AppCompatActivity
                                        @Override
                                        public void onRefresh() {
                                            dataSource = new DataSource(MainActivity.this, URL_FEED);
-
                                            listView.setAdapter(new SampleAdapter());
                                            listView.setOnItemClickListener(MainActivity.this);
                                            swipe.setRefreshing(false);
@@ -107,11 +109,7 @@ public class MainActivity extends AppCompatActivity
             desc.setVisibility(View.GONE);
 
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Articles");
+        supportActionBar();
 
         nM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nM.cancel(uniqueID);
@@ -135,6 +133,7 @@ public class MainActivity extends AppCompatActivity
         listView.setAdapter(new SampleAdapter());
         if(new SampleAdapter().getCount()<1){
             pDialog = new ProgressDialog(context);
+            pDialog.setCancelable(false);
 
         pDialog.setMessage("Loading articles.Please wait ...");
 //            pDialog.setIndeterminate(true);
@@ -144,12 +143,22 @@ public class MainActivity extends AppCompatActivity
             Runnable r =new Runnable() {
                 @Override
                 public void run() {
-                    pDialog.dismiss();
+                   SampleAdapter adapter=new SampleAdapter();
+                    //if(adapter.getCount()>0) {//-------------------------------TESTING THIS
+                        pDialog.dismiss();
 
-                    listView.setAdapter(new SampleAdapter());
+                        listView.setAdapter(adapter);
+                        if(listView.getAdapter().getCount()==0){
+                            test.setBackgroundResource(R.drawable.error);
+                            Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
+                                    .setAction("Action", null).show();
+                            // startActivity(new Intent(getBaseContext(),Home.class));
+
+                        }
+                   // }
                 }
             };
-        handler.postDelayed(r,5000);
+        handler.postDelayed(r, 5000);
         }
 
             listView.setOnItemClickListener(this);
@@ -157,6 +166,14 @@ public class MainActivity extends AppCompatActivity
 
 
 
+    }
+
+    private void supportActionBar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Articles");
     }
 
     @Override

@@ -128,7 +128,7 @@ private DataItem itemwithname(String name, String content, String region, String
 
 
 
-    return new DataItem(label,myContent,myRegion,owneR,downloadUrl, drawable);
+    return new DataItem(label, myContent, myRegion, label,myContent,myRegion,owneR,downloadUrl, drawable);
 }
 
 
@@ -136,7 +136,7 @@ private DataItem itemwithname(String name, String content, String region, String
     private DataItem nullable(){
         String label="No item matches your search";
 
-        return new DataItem(label,null,null,null,null,"null");
+        return new DataItem(label, null, null, label,null,null,null,null,"null");
     }
 
 }

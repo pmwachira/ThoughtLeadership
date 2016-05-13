@@ -134,7 +134,7 @@ public class Connect extends AppCompatActivity {
 
                             break;
                         case 6:
-                            Uri loc=Uri.parse("http://maps.google.com/maps?&daddr=-1.259728,36.777888 (ABC Place)");
+                            Uri loc=Uri.parse("http://maps.google.com/maps?&daddr=-1.259728,36.777888 (ABC Place, Waiyaki Way, Nairobi, Kenya)");
                             Intent i=new Intent(Intent.ACTION_VIEW,loc);
                             i.setPackage("com.google.android.apps.maps");
                             try {
@@ -180,7 +180,7 @@ public class Connect extends AppCompatActivity {
                     break;
 
                 default:
-                    number="0724216927";
+                    number="0712613052";
                     break;
             }
 
