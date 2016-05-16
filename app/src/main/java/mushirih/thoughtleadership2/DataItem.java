@@ -56,13 +56,12 @@ public class DataItem {
     public String getOwner() {
         return owner;
     }
-    public String name(){
+    public String getName(){
         return name;
     }
-    public String email(){
+    public String getEmail(){
         return email;
     }
-
     public String getWorkTitle() {
         return workTitle;
     }

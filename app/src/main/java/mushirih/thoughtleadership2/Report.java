@@ -14,6 +14,7 @@ import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -39,11 +40,14 @@ public class Report extends AppCompatActivity {
     TextView titlE;
     TextView contenT;
     TextView owneR;
+    TextView Name,Email,Web;
+    String name,email,workTitle;
     MainActivity mainActivity;
     String download,title;
     ProgressDialog pDialog;
     String videoPath="";
    LinearLayout dwn;
+    LinearLayout cont;
     public static final int progress_bar_type=0;//set progress bar to horizontal
     NotificationManager nM;
     int downloadError=0;
@@ -62,6 +66,14 @@ public class Report extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Reports");
         title=getIntent().getStringExtra("title");
+        name=getIntent().getStringExtra("name");
+        email=getIntent().getStringExtra("email");
+        workTitle=getIntent().getStringExtra("workTitle");
+        Name= (TextView) findViewById(R.id.name);
+        Email= (TextView) findViewById(R.id.email);
+        Web= (TextView) findViewById(R.id.website);
+        cont= (LinearLayout) findViewById(R.id.contact);
+
         final String content=getIntent().getStringExtra("content");
         String owner=getIntent().getStringExtra("owner");
          download=getIntent().getStringExtra("download");
@@ -78,6 +90,17 @@ public class Report extends AppCompatActivity {
         owneR= (TextView) findViewById(R.id.owner);
         owneR.setText(owner);
 
+        android.support.v7.widget.CardView cardView= (CardView) findViewById(R.id.card1);
+
+        if(name!=null){
+            Name.setText(name+", "+workTitle);
+            Email.setText(email);
+        }else{
+            cont.setVisibility(View.INVISIBLE);
+            cardView.setVisibility(View.GONE);
+
+        }
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,10 +110,16 @@ public class Report extends AppCompatActivity {
 
 
                 //CHECK IF TO SENT IS GREATER THAN 4200
-                if(content.length()>3800){
-                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content.subSequence(0,3800)+"...(Read more on our mobile app)"+ getString(R.string.download_link_footer));
+                if(content.length()>3750){
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n\n\n\n\n\n by KPMG Kenya \n\n" + content.subSequence(0,3800)+"...(Read more on our mobile app)"+ getString(R.string.download_link_footer));
                 }else{
-                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n by KPMG Kenya \n\n" + content + getString(R.string.download_link_footer));
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n by KPMG Kenya \n\n" + content + getString(R.string.download_link_footer));
                 }
                 startActivity(Intent.createChooser(send, "Share article using.."));
 
@@ -288,8 +317,33 @@ public class Report extends AppCompatActivity {
         intent.setType("message/rfc822");
         intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"pmwachia@gmail.com"}); // or just "mailto:" for blank
         intent.putExtra(Intent.EXTRA_SUBJECT, heading);
-        intent.putExtra(Intent.EXTRA_TEXT, "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+        intent.putExtra(Intent.EXTRA_TEXT, "\n\n\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n" +
+                "\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
+        try {
+            intent.setPackage("com.google.android.gm");
+        } catch (Exception e) {
+
+
+            Intent intent2 = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
+            intent2.setType("text/plain");
+            intent2.putExtra(Intent.EXTRA_SUBJECT, heading);
+            intent.putExtra(Intent.EXTRA_TEXT, "\n\n\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "\n" +
+                    "\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+            intent.putExtra(Intent.EXTRA_EMAIL, new String[]{"pmwachia@gmail.com"}); // or just "mailto:" for blank
+
+            startActivity(intent2);
+        }
 
         startActivity(intent);
     }

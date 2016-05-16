@@ -199,7 +199,7 @@ public class DataSource {
         return new DataItem(label,content,region,owner,downloadUrl, drawable);
     }
     */
-    private DataItem itemwithname(String name, String email, String workTitle, String content, String region, String owner, String displaypic, String download, String title) {
+    private DataItem itemwithname(String title,String content, String region, String owner, String displaypic, String download,String name, String email, String workTitle) {
         String label = null;
 
         String myContent=null;
@@ -208,7 +208,7 @@ public class DataSource {
         String downloadUrl=null;
         String displayPic=null;
 
-                label = name;
+                label = title;
                 myRegion=region;
                 owneR=owner;
                // drawable = mProvider.getRoundRectWithBorder(label.substring(0,1));

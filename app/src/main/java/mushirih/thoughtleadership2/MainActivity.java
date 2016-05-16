@@ -287,6 +287,9 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra("region",item.getRegion());
             intent.putExtra("download",item.getDownloadUrl());
             intent.putExtra("owner",item.getOwner());
+            intent.putExtra("name",item.getName());
+            intent.putExtra("email",item.getEmail());
+            intent.putExtra("workTitle",item.getWorkTitle());
             startActivity(intent);
         }else{
             Intent restart=new Intent(this,MainActivity.class);
