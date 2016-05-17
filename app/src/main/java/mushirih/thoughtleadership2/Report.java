@@ -14,7 +14,6 @@ import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -90,15 +89,13 @@ public class Report extends AppCompatActivity {
         owneR= (TextView) findViewById(R.id.owner);
         owneR.setText(owner);
 
-        android.support.v7.widget.CardView cardView= (CardView) findViewById(R.id.card1);
 
-        if(name!=null){
+
+        if(name.isEmpty()) {
+            cont.setVisibility(View.GONE);
+        }else {
             Name.setText(name+", "+workTitle);
-            Email.setText(email);
-        }else{
-            cont.setVisibility(View.INVISIBLE);
-            cardView.setVisibility(View.GONE);
-
+            Email.setText("Email: "+email);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

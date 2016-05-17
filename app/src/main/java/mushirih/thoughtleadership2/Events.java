@@ -95,7 +95,7 @@ public class Events extends AppCompatActivity
         //CHECK SYNCRONY OF THIS
         Calendar beginTime = Calendar.getInstance();
 
-        beginTime.set(Integer.parseInt(item.getYear()), Integer.parseInt(item.getMonth()), Integer.parseInt(item.getDate()));
+        beginTime.set(Integer.parseInt(item.getYear()), Integer.parseInt(item.getMonth())-1, Integer.parseInt(item.getDate()));
         Intent calendar=new Intent(Intent.ACTION_INSERT);
          //calendar.setData(CalendarContract.Events.CONTENT_URI);
         calendar.setType("vnd.android.cursor.item/event");
