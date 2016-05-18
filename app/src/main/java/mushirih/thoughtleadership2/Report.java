@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -60,6 +61,12 @@ public class Report extends AppCompatActivity {
         typeface= Typeface.createFromAsset(getBaseContext().getAssets(), "KPMGAppExtraLight.ttf");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbb);
         dwn= (LinearLayout) findViewById(R.id.dwn);
+
+//        if(!getIntent().getStringExtra("drawable").isEmpty()) {
+//            ImageView kiongo = (ImageView) findViewById(R.id.imageViewHead);
+//
+//            Picasso.with(this).load(getIntent().getStringExtra("drawable")).into(kiongo);
+//        }
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -96,6 +103,9 @@ public class Report extends AppCompatActivity {
         }else {
             Name.setText(name+", "+workTitle);
             Email.setText("Email: "+email);
+            Email.setPaintFlags(Email.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            Web.setPaintFlags(Web.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

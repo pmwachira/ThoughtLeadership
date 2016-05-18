@@ -108,8 +108,8 @@ public class SORTER {
         return new DataItem(label,content,region,owner,downloadUrl, drawable);
     }
     */
-private DataItem itemwithname(String name, String content, String region, String owner,String displaypic, String download) {
-    String label = null;
+private DataItem itemwithname(String label, String content, String region, String owner, String download,String displaypic,String name,String email,String workTitle) {
+    String Label = null;
     String drawable = null;
     String myContent=null;
     String myRegion=null;
@@ -117,7 +117,7 @@ private DataItem itemwithname(String name, String content, String region, String
     String downloadUrl=null;
     String displayPic=null;
 
-    label = name;
+    label = label;
     myRegion=region;
     owneR=owner;
     // drawable = mProvider.getRoundRectWithBorder(label.substring(0,1));
@@ -128,7 +128,7 @@ private DataItem itemwithname(String name, String content, String region, String
 
 
 
-    return new DataItem(label, myContent, myRegion, label,myContent,myRegion,owneR,downloadUrl, drawable);
+    return new DataItem(Label, myContent, myRegion, owneR,downloadUrl, drawable,name,email,workTitle);
 }
 
 
@@ -136,7 +136,7 @@ private DataItem itemwithname(String name, String content, String region, String
     private DataItem nullable(){
         String label="No item matches your search";
 
-        return new DataItem(label, null, null, label,null,null,null,null,"null");
+        return new DataItem(label, null,null,null,null,"null",null,null,null);
     }
 
 }

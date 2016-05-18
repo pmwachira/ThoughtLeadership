@@ -45,7 +45,8 @@ public class Home  extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.mytoolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setIcon(R.drawable.smallicon);
+        getSupportActionBar().setIcon(R.mipmap.actionbar);
+        getSupportActionBar().setTitle(" East Africa");
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

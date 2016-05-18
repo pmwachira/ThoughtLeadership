@@ -30,7 +30,7 @@ public class Interest extends AppCompatActivity {
     Button button;
     ListView listView;
     ArrayAdapter<String> arrayAdapter;
-    SharedPreferences sharedPreferences;
+
     SharedPreferences editor;
     private ProgressDialog pDialog;
     Set<String> myset = new HashSet<String>();

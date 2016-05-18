@@ -72,7 +72,8 @@ public class Services extends AppCompatActivity{
         txt_help3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txt_help3.setCompoundDrawablesWithIntrinsicBounds(0,0,R.drawable.b,0);
+                txt_help3.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.b, 0);
+
                 if(content.isShown()){
                     txt_help.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.a, 0);
                     content.setVisibility(View.GONE);

@@ -53,8 +53,15 @@
             android:id="@+id/articles"
             android:layout_width="match_parent"
             android:layout_height="0px"
+
+            android:layout_weight="3"
             android:background="@drawable/book"
-            android:layout_weight="3">
+            >
+            <!--<ImageView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:background="@drawable/book"/>-->
+
             <TextView
                 android:id="@+id/art"
                 android:gravity="center_vertical"

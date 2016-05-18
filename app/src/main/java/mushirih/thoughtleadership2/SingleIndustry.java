@@ -71,14 +71,14 @@ public class SingleIndustry extends AppCompatActivity
     String URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
     private SearchView mSearchView;
     String industries="";
-    LinearLayout test;
+    int tester=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
         final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
-        mProvider = new DrawableProvider(this);
+        mProvider = new DrawableProvider(context);
         desc= (TextView) findViewById(R.id.desc);
         desc.setTextColor(Color.BLACK);
         desc.setTextSize(20);
@@ -130,9 +130,10 @@ public class SingleIndustry extends AppCompatActivity
             Runnable r =new Runnable() {
                 @Override
                 public void run() {
+                    SampleAdapter adapter=new SampleAdapter();
                     pDialog.dismiss();
 
-                    listView.setAdapter(new SampleAdapter());
+                    listView.setAdapter(adapter);
                     if(listView.getAdapter().getCount()==0){
                         test.setBackgroundResource(R.drawable.error);
                         Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
@@ -147,6 +148,7 @@ public class SingleIndustry extends AppCompatActivity
         }
 
         listView.setOnItemClickListener(this);
+        tester= listView.getAdapter().getCount();
 
     }
 
@@ -167,14 +169,20 @@ public class SingleIndustry extends AppCompatActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
-        MenuItem searchItem=menu.findItem(R.id.action_search);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+        if(tester>0) {
+            MenuItem searchItem = menu.findItem(R.id.action_search);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
 
-            mSearchView= (SearchView) searchItem.getActionView();
-            setUpSearch(searchItem);
-        }else{
+                mSearchView = (SearchView) searchItem.getActionView();
+                setUpSearch(searchItem);
+
+            } else {
+                searchItem.setVisible(false);
+                this.invalidateOptionsMenu();
+            }
+        }else {
+            MenuItem searchItem = menu.findItem(R.id.action_search);
             searchItem.setVisible(false);
-            this.invalidateOptionsMenu();
         }
 
         return true;
@@ -215,6 +223,7 @@ public class SingleIndustry extends AppCompatActivity
     public boolean onQueryTextChange(String newText) {
 //Toast.makeText(this,newText,Toast.LENGTH_SHORT).show();
         search=newText;
+
         sorter=new SORTER(this,URL_FEED,newText);
         listView.setAdapter(new SampleSORTEDAdapter());
 
@@ -338,6 +347,7 @@ public class SingleIndustry extends AppCompatActivity
                 holder.textview.setCompoundDrawablesWithIntrinsicBounds(null,null,
                         null,null);
             }
+            /*
             holder.download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -355,7 +365,7 @@ public class SingleIndustry extends AppCompatActivity
                 });
             }
             */
-            notifyDataSetChanged();
+    notifyDataSetChanged();
             return convertView;
         }
 

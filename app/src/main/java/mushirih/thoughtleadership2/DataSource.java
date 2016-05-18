@@ -97,6 +97,16 @@ public class DataSource {
                 JSONObject jsonObj = (JSONObject) feedArray.get(i);
                 String strip = null;
                 String displaypic = null;
+                String name="";
+                String email="";
+                String workTitle="";
+                try {
+                   name= jsonObj.getString("name");
+                   email= jsonObj.getString("email");
+                   workTitle= jsonObj.getString("workTitle");
+                }catch (Exception e){
+
+                }
                 String reg = jsonObj.getString("region");
                 if (reg.isEmpty()) {
                     reg = "KPMG";
@@ -115,7 +125,7 @@ public class DataSource {
 
 
 
-                mDataSource.add(itemwithname(jsonObj.getString("title"),jsonObj.getString("content"),reg,jsonObj.getString("owner"),displaypic,jsonObj.getString("link"),jsonObj.getString("name"),jsonObj.getString("email"),jsonObj.getString("workTitle")));
+                mDataSource.add(itemwithname(jsonObj.getString("title"),jsonObj.getString("content"),reg,jsonObj.getString("owner"),displaypic,jsonObj.getString("link"),name,email,workTitle));
     Log.d("CHECK",jsonObj.getString("link"));
             }
 
@@ -216,6 +226,8 @@ public class DataSource {
                  myContent=content;
                 displayPic=displaypic;
                  downloadUrl=download;
+
+
 
 
 

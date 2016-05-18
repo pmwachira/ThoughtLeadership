@@ -9,6 +9,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
@@ -16,6 +17,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity
  public static ListView listView;
     DataSource dataSource;
     SORTER sorter;
-
+    SharedPreferences editor;
+    SharedPreferences.Editor fav;
     public static String search="";
    TextView desc;
     public static ProgressDialog pDialog;
@@ -163,7 +166,14 @@ public class MainActivity extends AppCompatActivity
 
             listView.setOnItemClickListener(this);
 
-
+        int popeye=dataSource.getCount();
+        editor = PreferenceManager.getDefaultSharedPreferences(this);
+        fav = editor.edit();
+        fav.putInt("counting",popeye);
+        fav.commit();
+//        Toast.makeText(getApplicationContext(),
+//                "WATCHING : "+editor.getInt("counting",1),
+//                Toast.LENGTH_LONG).show();
 
 
     }
@@ -286,6 +296,7 @@ public class MainActivity extends AppCompatActivity
             intent.putExtra("content",item.getContent());
             intent.putExtra("region",item.getRegion());
             intent.putExtra("download",item.getDownloadUrl());
+            intent.putExtra("drawable",item.getDrawable());
             intent.putExtra("owner",item.getOwner());
             intent.putExtra("name",item.getName());
             intent.putExtra("email",item.getEmail());
@@ -356,7 +367,7 @@ public class MainActivity extends AppCompatActivity
 
             String drawable=item.getDrawable();
             Drawable mydefault=null;
-            if(drawable.equals("null")){
+            if(drawable ==null||drawable.isEmpty()||drawable.equals("null")){
                 holder.imageView.setVisibility(View.INVISIBLE);
             }
             if(drawable.equals("DEFAULT")) {
