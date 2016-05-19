@@ -94,8 +94,10 @@ public class RecyclerViewAdapterEvents extends RecyclerView.Adapter<RecyclerView
 
                holder.ting.setVisibility(View.GONE);
                holder.title.setText("There are no upcoming events at this time");
+
                holder.owner.setVisibility(View.GONE);
                holder.owner.setVisibility(View.GONE);
+           holder.itemView.setTag(item);
            //}
         }
 

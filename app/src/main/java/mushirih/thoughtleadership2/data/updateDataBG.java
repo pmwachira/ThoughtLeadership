@@ -44,13 +44,15 @@ public class updateDataBG extends Service {
         nM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nM.cancel(uniqueID);
         mProvider = new DrawableProvider(getApplicationContext());
-       dataSource = new DataSource(getApplicationContext(), URL_FEED);
+        dataSource = new DataSource(getApplicationContext(), URL_FEED);
+        dataSource.refresh(URL_FEED);
+       //dataSource = new DataSource(getApplicationContext(), URL_FEED);
      //   if(1!=1) {
         editor = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
          int dexter=editor.getInt("counting", 0);
         int mojojojo=dataSource.getCount();
-//        Toast.makeText(getApplicationContext(),"we are at "+dataSource.getCount()+"AGAINST EXISTING: "+dexter,Toast.LENGTH_LONG).show();
-            if(mojojojo>dexter) {
+    // Toast.makeText(getApplicationContext(), "we are at " + dataSource.getCount() + "AGAINST EXISTING: " + dexter, Toast.LENGTH_LONG).show();
+            if(mojojojo > dexter) {
                 displayNotification();
             }
        // }

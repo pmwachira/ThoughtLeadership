@@ -12,6 +12,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -24,6 +26,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.app_bar_main);
         final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
-
+        dataSource = new DataSource(MainActivity.this, URL_FEED);
         mProvider = new DrawableProvider(this);
         listView= (ListView) findViewById(R.id.listView);
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.shhhhhwipe);
@@ -100,10 +103,21 @@ public class MainActivity extends AppCompatActivity
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                        @Override
                                        public void onRefresh() {
-                                           dataSource = new DataSource(MainActivity.this, URL_FEED);
-                                           listView.setAdapter(new SampleAdapter());
-                                           listView.setOnItemClickListener(MainActivity.this);
-                                           swipe.setRefreshing(false);
+                                           ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                                           NetworkInfo info = check.getActiveNetworkInfo();
+                                           TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                                           if (info == null || !info.isConnected() || tm.getDataState() != tm.DATA_CONNECTED) {
+                                             Toast.makeText(getApplicationContext(),"Please check yout internet connection and try again",Toast.LENGTH_LONG).show();
+                                               swipe.setRefreshing(false);
+                                           }else {
+                                               dataSource.refresh(URL_FEED);
+                                               dataSource = new DataSource(MainActivity.this, URL_FEED);
+                                               loader(test);
+                                               listView.setAdapter(new SampleAdapter());
+                                               listView.setOnItemClickListener(MainActivity.this);
+                                               // ((BaseAdapter)listView.getAdapter()).notifyDataSetChanged();
+                                               swipe.setRefreshing(false);
+                                           }
                                        }
                                    });
 
@@ -134,6 +148,23 @@ public class MainActivity extends AppCompatActivity
 //
 //
         listView.setAdapter(new SampleAdapter());
+        loader(test);
+
+        listView.setOnItemClickListener(this);
+
+        int popeye=dataSource.getCount();
+        editor = PreferenceManager.getDefaultSharedPreferences(this);
+        fav = editor.edit();
+        fav.putInt("counting",popeye);
+        fav.commit();
+//        Toast.makeText(getApplicationContext(),
+//                "WATCHING : "+editor.getInt("counting",1),
+//                Toast.LENGTH_LONG).show();
+
+
+    }
+
+    private void loader(final LinearLayout test) {
         if(new SampleAdapter().getCount()<1){
             pDialog = new ProgressDialog(context);
             pDialog.setCancelable(false);
@@ -163,19 +194,6 @@ public class MainActivity extends AppCompatActivity
             };
         handler.postDelayed(r, 5000);
         }
-
-            listView.setOnItemClickListener(this);
-
-        int popeye=dataSource.getCount();
-        editor = PreferenceManager.getDefaultSharedPreferences(this);
-        fav = editor.edit();
-        fav.putInt("counting",popeye);
-        fav.commit();
-//        Toast.makeText(getApplicationContext(),
-//                "WATCHING : "+editor.getInt("counting",1),
-//                Toast.LENGTH_LONG).show();
-
-
     }
 
     private void supportActionBar() {

@@ -29,22 +29,28 @@ public class DataSource {
     private DrawableProvider mProvider;
     public static ProgressDialog pDialog;
     private Context contextHere;
+    Cache cache;
+
     public DataSource(Context context,String URL_FEED) {
         contextHere=context;
         mProvider = new DrawableProvider(context);
         mDataSource = new ArrayList<DataItem>();
      
 //*********************************************************
-        Cache cache= AppController.getInstance().getRequestQueue().getCache();
+
+         cache= AppController.getInstance().getRequestQueue().getCache();
 
 
+        loadCache(URL_FEED);
 
+    }
+
+    public void refresh(String URL_FEED){
+        cache.clear();
+        loadCache(URL_FEED);
+    }
+    public void loadCache(String URL_FEED) {
         Cache.Entry entry=cache.get(URL_FEED);//THROWING A NULL
-
-
-
-
-
 
         if(entry!=null){
             try {
@@ -85,8 +91,8 @@ public class DataSource {
 
             AppController.getInstance().addToRequestQueue(jsonObjectRequest);
         }
-
     }
+
 
     private void parseJsonFeed(JSONObject jsonObject) {
         try {

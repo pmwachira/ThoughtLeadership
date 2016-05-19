@@ -16,7 +16,7 @@ public class DataListener extends BroadcastReceiver {
         //Toast.makeText(context,"DATA HAS CHANGED",Toast.LENGTH_LONG).show();//WORKING
         //CHECK DATA----------------------------------------------------------------------------------------------------------------------
         ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = check.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+        NetworkInfo info = check.getActiveNetworkInfo();
         TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         if (info == null || !info.isConnected() || tm.getDataState() != tm.DATA_CONNECTED) {
 

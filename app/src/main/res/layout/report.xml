@@ -50,7 +50,7 @@
         <!--android:id="@+id/imageViewHead" />
 
         -->
-    <mushirih.thoughtleadership2.SquareImageView
+    <ImageView
         android:id="@+id/imageViewHead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

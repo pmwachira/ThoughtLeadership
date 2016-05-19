@@ -95,7 +95,11 @@ public class Events extends AppCompatActivity
 
       //  saveEve(item);
         //OR
-        showEventNow(item);
+        if(item.getTitle().equals("null")){
+            startActivity(new Intent(getBaseContext(),Home.class));
+        }else {
+            showEventNow(item);
+        }
     }
 
     private void saveEve(EventItem item) {
@@ -116,7 +120,11 @@ public class Events extends AppCompatActivity
     }
 
     private void showEventNow(final EventItem item) {
-        new android.support.v7.app.AlertDialog.Builder(this).setIcon(R.drawable.icon).setTitle("Event name: "+item.getTitle()).setMessage(item.getDesc()+" on "+item.getDate()+"/"+item.getMonth()+"/"+item.getYear()).setPositiveButton("Save Event?", new DialogInterface.OnClickListener() {
+        new android.support.v7.app.AlertDialog.Builder(this)
+                .setIcon(R.drawable.icon)
+                .setTitle("Event name: "+item.getTitle())
+                .setMessage(item.getDesc()+" on "+item.getDate()+"/"+item.getMonth()+"/"+item.getYear())
+                .setPositiveButton("Save to Calendar", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                saveEve(item);
@@ -126,7 +134,7 @@ public class Events extends AppCompatActivity
             public void onClick(DialogInterface dialog, int which) {
 
             }
-        }).show();
+        }).setNeutralButton("LOL",null).show();
     }
 
     @Override
