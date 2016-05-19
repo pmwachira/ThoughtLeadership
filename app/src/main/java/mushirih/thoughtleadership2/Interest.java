@@ -36,6 +36,7 @@ public class Interest extends AppCompatActivity {
     Set<String> myset = new HashSet<String>();
     SharedPreferences.Editor fav;
     String[] send;
+    ArrayList<String> selecteditems;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -110,6 +111,10 @@ public class Interest extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         justSave();
+      Intent thisOne = new Intent(getBaseContext(), Home.class);
+        thisOne.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(thisOne);
+
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -127,7 +132,7 @@ public class Interest extends AppCompatActivity {
 
         }else {
             SparseBooleanArray checked = listView.getCheckedItemPositions();
-            ArrayList<String> selecteditems = new ArrayList<String>();
+             selecteditems = new ArrayList<String>();
             for (int i = 0; i < checked.size(); i++) {
                 int position = checked.keyAt(i);
                 if (checked.valueAt(i))
@@ -162,16 +167,19 @@ public class Interest extends AppCompatActivity {
         }
         fav.putStringSet("fav", myset);
         fav.commit();
-        pDialog = new ProgressDialog(this);
+        if (selecteditems.size()!=0) {
+            pDialog = new ProgressDialog(this);
 
-        pDialog.setMessage("Saving topics.Please wait ...");
-        pDialog.setMax(10000);
-        pDialog.setIndeterminate(true);
-        pDialog.setCancelable(false);
-        pDialog.show();
+            pDialog.setMessage("Saving topics.Please wait ...");
+            pDialog.setMax(10000);
+            pDialog.setIndeterminate(true);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
 
-        startActivity(new Intent(getBaseContext(), Home.class));
-        Toast.makeText(getApplicationContext(), "Topics Saved", Toast.LENGTH_SHORT).show();
-
+        if (selecteditems.size()!=0) {
+            Toast.makeText(getApplicationContext(), "Topics Saved", Toast.LENGTH_SHORT).show();
+        }
     }
+
 }
