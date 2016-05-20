@@ -19,6 +19,8 @@ import com.google.android.youtube.player.YouTubeIntents;
 
 import java.lang.reflect.Field;
 
+import mushirih.thoughtleadership2.tweets.TwitterMain;
+
 //import com.google.android.youtube.player.YouTubeIntents;
 
 /**
@@ -98,12 +100,14 @@ public class Connect extends AppCompatActivity {
                             }
                             break;
                         case 2:
+                            startActivity(new Intent(getBaseContext(), TwitterMain.class));
+                            /*
                             try{
                                 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("twitter://user?screen_name="+"mushirih")));
                             }catch (Exception E){
                                 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://twitter.com/#!/"+"mushirih")));
                             }
-
+*/
                             break;
                         case 3:
                             Toast.makeText(getBaseContext(), "Opening KPMG Kenya on YouTube", Toast.LENGTH_SHORT).show();

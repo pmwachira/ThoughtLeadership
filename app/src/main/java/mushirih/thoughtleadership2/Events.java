@@ -124,12 +124,12 @@ public class Events extends AppCompatActivity
                 .setIcon(R.drawable.icon)
                 .setTitle("Event name: "+item.getTitle())
                 .setMessage(item.getDesc()+" on "+item.getDate()+"/"+item.getMonth()+"/"+item.getYear())
-                .setPositiveButton("Save to Calendar", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-               saveEve(item);
-            }
-        }).setNegativeButton("Don't save", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Save to Calendar", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        saveEve(item);
+                    }
+                }).setPositiveButton("Don't save", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

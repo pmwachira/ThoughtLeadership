@@ -94,6 +94,8 @@
         <activity android:name=".Email"
             android:noHistory="true"
             android:parentActivityName=".Connect"/>
+        <activity android:name=".tweets.TwitterMain"
+            android:parentActivityName=".Connect"/>
     </application>
 
 </manifest>
