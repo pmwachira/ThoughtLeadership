@@ -1,5 +1,6 @@
 package mushirih.thoughtleadership2;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,7 @@ public class MyAdapterConnect extends RecyclerView.Adapter<MyAdapterConnect.View
 
     private String mNavTitles[]; // String Array to store the passed titles Value from MainActivity.java
     private int mIcons[];       // Int Array to store the passed icons resource value from MainActivity.java
-
+    private  int mColors[];
 //    private String name;        //String Resource for header View Name
 //    private int profile;        //int Resource for header view profile picture
 //    private String email;       //String Resource for header view email
@@ -31,6 +32,7 @@ public class MyAdapterConnect extends RecyclerView.Adapter<MyAdapterConnect.View
 
         TextView textView;
         ImageView imageView;
+        CardView grande;
 
 
 
@@ -40,7 +42,7 @@ public class MyAdapterConnect extends RecyclerView.Adapter<MyAdapterConnect.View
 
             // Here we set the appropriate view in accordance with the the view type as passed when the holder object is created
             if(ViewType == TYPE_ITEM) {
-
+                grande= (CardView) itemView.findViewById(R.id.morph);
                 textView = (TextView) itemView.findViewById(R.id.rowText); // Creating TextView object with the id of textView from item_row.xml
                 imageView = (ImageView) itemView.findViewById(R.id.rowIcon);// Creating ImageView object with the id of ImageView from item_row.xml
                 Holderid = 1;
@@ -57,10 +59,11 @@ public class MyAdapterConnect extends RecyclerView.Adapter<MyAdapterConnect.View
 
 
 
-    MyAdapterConnect(String Titles[], int Icons[]){ // MyAdapter Constructor with titles and icons parameter
+    MyAdapterConnect(String Titles[], int Icons[], int[] colors){ // MyAdapter Constructor with titles and icons parameter
         // titles, icons, name, email, profile pic are passed from the main activity as we
         mNavTitles = Titles;                //have seen earlier
         mIcons = Icons;
+        mColors=colors;
                            //here we assign those passed values to the values we declared here
         //in adapter
 
@@ -102,6 +105,7 @@ public class MyAdapterConnect extends RecyclerView.Adapter<MyAdapterConnect.View
             // position by 1 and pass it to the holder while setting the text and image
             holder.textView.setText(mNavTitles[position]); // Setting the Text with the array of our Titles
             holder.imageView.setImageResource(mIcons[position]);// Settimg the image with array of our icons
+            holder.grande.setCardBackgroundColor(mColors[position]);
 
         }
 

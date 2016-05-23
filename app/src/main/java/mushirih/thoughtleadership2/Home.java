@@ -9,7 +9,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -159,15 +158,17 @@ public class Home  extends AppCompatActivity
 
         }else if(id == R.id.nav_cred) {
             Profs prof = new Profs(this);
-           if (prof.getCount() == 0) {
+          // if (prof.getCount() == 0) {
                 startActivity(new Intent(getBaseContext(), ListCred.class));
+            /*
             } else{
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(Home.this);
             builder2.setItems(R.array.cred, mDialogListenerCall);
             AlertDialog alertDialog = builder2.create();
 
             alertDialog.show();
-        }
+
+        }*/
 
         }else if(id==R.id.nav_d){
             startActivity(new Intent(getBaseContext(),DIR.class));

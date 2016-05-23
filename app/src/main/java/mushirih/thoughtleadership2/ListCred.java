@@ -53,8 +53,9 @@ public class ListCred extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Lead Profiles");
 
-
+       listView.setAdapter(sampleAdapter);
         listView.setOnItemClickListener(this);
+
 
     }
 

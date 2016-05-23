@@ -11,7 +11,7 @@ public class Profs {
 
 
     public static final int NO_NAVIGATION = -1;
-    private static final String TAG=MainActivity.class.getSimpleName();
+    private static final String TAG=ListCred.class.getSimpleName();
     private ArrayList<ProfItem> profSource;
     private DrawableProvider mProvider;
     private Context contextHere;
@@ -32,7 +32,7 @@ public class Profs {
     public ProfItem getItem(int position) {
         return profSource.get(position);
     }
-    private ProfItem itemwithname(String nam, String titl, String pro) {
+    public  ProfItem itemwithname(String nam, String titl, String pro) {
         String name = null;
 
         String title=null;

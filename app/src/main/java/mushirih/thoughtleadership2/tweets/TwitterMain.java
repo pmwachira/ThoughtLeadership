@@ -35,14 +35,24 @@ public class TwitterMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.twittermain);
         test= (LinearLayout) findViewById(R.id.test);
-        supportActionBar();
+        final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.sw);
         final ListView goog= (ListView) findViewById(R.id.listVV);
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipe.setRefreshing(true);
+                new TwitterAsyncTask().execute(twitterScreenName, this, goog);
+                swipe.setRefreshing(false);
+            }
+        });
+        supportActionBar();
+
         AndroidNetworkUtility androidNetworkUtility = new AndroidNetworkUtility();
         if (androidNetworkUtility.isConnected(this)) {
 
             new TwitterAsyncTask().execute(twitterScreenName,this,goog);
         } else {
-            final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.sw);
+
 
             flag=1;
             test.setBackgroundResource(R.drawable.error);

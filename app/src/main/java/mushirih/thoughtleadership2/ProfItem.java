@@ -12,20 +12,22 @@ public class ProfItem {
 
     public ProfItem(String name,String title,String downloadUrl){
        this.name=name;
-        this.downloadUrl=downloadUrl;
         this.title=title;
+        this.downloadUrl=downloadUrl;
+
 
     }
 
     public String getName(){
         return name;
     }
+    public String getTitle() {
+        return title;
+    }
     public String getDownloadUrl(){
         return downloadUrl;
     }
 
-    public String getTitle() {
-        return title;
-    }
+
 
 }

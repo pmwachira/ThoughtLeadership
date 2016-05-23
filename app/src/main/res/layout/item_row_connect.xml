@@ -2,7 +2,8 @@
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/card_view"
+    android:id="@+id/morph"
+
     android:layout_gravity="center"
     android:layout_margin="5dp"
     android:elevation="8dp"

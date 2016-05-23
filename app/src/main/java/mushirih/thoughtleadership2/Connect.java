@@ -3,6 +3,7 @@ package mushirih.thoughtleadership2;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -64,7 +65,8 @@ public class Connect extends AppCompatActivity {
 
         String TITLES[] = {"Visit website", "Facebook", "Twitter", "Youtube", "Linked In", "Call us", "Come to us","Write to us"};
         int ICONS[] = {R.drawable.web, R.drawable.facebook, R.drawable.tweet, R.drawable.youtube, R.drawable.linked, R.drawable.call, R.drawable.location,R.drawable.email};
-        adapter = new MyAdapterConnect(TITLES, ICONS);
+        int[]colors={Color.parseColor("#000000"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#bb0000"),Color.parseColor("#007bb6"),Color.parseColor("#ffffff"),Color.parseColor("#ffffff"),Color.parseColor("#ffffff")};
+        adapter = new MyAdapterConnect(TITLES, ICONS,colors);
         recyclerView.setAdapter(adapter);
         final GestureDetector gestureDetector = new GestureDetector(Connect.this, new GestureDetector.SimpleOnGestureListener() {
 
