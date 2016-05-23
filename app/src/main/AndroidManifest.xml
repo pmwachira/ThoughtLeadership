@@ -79,7 +79,7 @@
             android:theme="@style/AppTheme"/>
         <activity
             android:name=".Cred"
-            android:parentActivityName=".Home"
+            android:parentActivityName=".ListCred"
             android:theme="@style/AppTheme"
             >
          </activity>
