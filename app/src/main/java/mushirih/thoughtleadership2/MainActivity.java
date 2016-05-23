@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity
     int downloadError=0;
     String file;
     final static int uniqueID=6790000;
-    String URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/thoughtleadership.php";
+    String URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/thoughtleadership.php?id=test";
     private SearchView mSearchView;
     DrawableProvider mProvider;
     Context context;
