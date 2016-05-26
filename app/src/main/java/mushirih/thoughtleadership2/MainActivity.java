@@ -110,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                                              Toast.makeText(getApplicationContext(),"Please check yout internet connection and try again",Toast.LENGTH_LONG).show();
                                                swipe.setRefreshing(false);
                                            }else {
+                                               test.setBackgroundColor(0);
                                                dataSource.refresh(URL_FEED);
                                                dataSource = new DataSource(MainActivity.this, URL_FEED);
                                                loader(test);

@@ -24,7 +24,7 @@
 
 
     <item android:id="@+id/nav_about" android:icon="@android:drawable/ic_menu_help"
-        android:title="About Us" />
+        android:title="About KPMG East Africa" />
     <item android:id="@+id/nav_contact" android:icon="@android:drawable/ic_menu_call"
         android:title="Contact" />
 </menu>
@@ -56,7 +56,10 @@
             android:title="Disclaimer"
             android:id="@+id/nav_disclaimer">
         </item>
-
+        <item
+            android:title="App info"
+            android:id="@+id/nav_bout">
+        </item>
     </group>
     </menu>
 

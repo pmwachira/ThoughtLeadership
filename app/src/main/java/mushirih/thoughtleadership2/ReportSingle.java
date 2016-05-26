@@ -6,15 +6,19 @@ import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,33 +43,86 @@ public class ReportSingle  extends AppCompatActivity {
     MainActivity mainActivity;
     ProgressDialog pDialog;
     String videoPath="";
+    Typeface typeface;
 
     public static final int progress_bar_type=0;//set progress bar to horizontal
     NotificationManager nM;
     int downloadError=0;
-    String file,download, title;
+    String file,download, title,name,email,workTitle;
     final static int uniqueID=67949870;
+     LinearLayout dwn;
+    TextView Name,Email,Web;
+    LinearLayout cont;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.report);
+        typeface= Typeface.createFromAsset(getBaseContext().getAssets(), "KPMGAppExtraLight.ttf");
+        dwn= (LinearLayout) findViewById(R.id.dwn);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbb);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Industry Report");
+        name=getIntent().getStringExtra("name");
+        email=getIntent().getStringExtra("email");
+        workTitle=getIntent().getStringExtra("workTitle");
          title=getIntent().getStringExtra("title");
-        String content=getIntent().getStringExtra("content");
+        final String content=getIntent().getStringExtra("content");
         String owner=getIntent().getStringExtra("owner");
         download=getIntent().getStringExtra("download");
 
+        Name= (TextView) findViewById(R.id.name);
+        Email= (TextView) findViewById(R.id.email);
+        Web= (TextView) findViewById(R.id.website);
+        cont= (LinearLayout) findViewById(R.id.contact);
+
         titlE= (TextView) findViewById(R.id.title);
         titlE.setText(title);
+        titlE.setTypeface(typeface);
         contenT= (TextView) findViewById(R.id.content);
         contenT.setText(content);
         owneR= (TextView) findViewById(R.id.owner);
         owneR.setText(owner);
-  }
+
+        if(name.isEmpty()) {
+            cont.setVisibility(View.GONE);
+        }else {
+            Name.setText(name+", "+workTitle);
+            Email.setText("Email: "+email);
+            Email.setPaintFlags(Email.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            Web.setPaintFlags(Web.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+
+        }
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent send = new Intent(Intent.ACTION_SEND);
+                send.setType("text/plain");
+
+
+                //CHECK IF TO SENT IS GREATER THAN 4200
+                if (content.length() > 3750) {
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n\n\n\n\n\n\n by KPMG Kenya \n\n" + content.subSequence(0, 3800) + "...(Read more on our mobile app)" + getString(R.string.download_link_footer));
+                } else {
+                    send.putExtra(Intent.EXTRA_TEXT, title + "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n" +
+                            "\n by KPMG Kenya \n\n" + content + getString(R.string.download_link_footer));
+                }
+                startActivity(Intent.createChooser(send, "Share article using.."));
+
+
+            }
+        });
+
+    }
     public  void downloadPDF(View v){
 
         Date now=new Date();
@@ -203,7 +260,7 @@ public class ReportSingle  extends AppCompatActivity {
     private void displayNotification() {
 
         NotificationCompat.Builder mBuilder= (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.smallicon)
+                .setSmallIcon(R.mipmap.actionbar)
                 .setContentTitle("KPMG download complete")
                 .setContentText("PDF has been downloaded to your collection")
                 .setAutoCancel(true)

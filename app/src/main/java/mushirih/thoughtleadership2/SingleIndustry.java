@@ -262,6 +262,11 @@ public class SingleIndustry extends AppCompatActivity
             intent.putExtra("region",item.getRegion());
             intent.putExtra("owner",item.getOwner());
             intent.putExtra("download",item.getDownloadUrl());
+            intent.putExtra("drawable",item.getDrawable());
+           
+            intent.putExtra("name",item.getName());
+            intent.putExtra("email",item.getEmail());
+            intent.putExtra("workTitle",item.getWorkTitle());
             startActivity(intent);
         }else{
             Intent restart=new Intent(this,SingleIndustry.class);

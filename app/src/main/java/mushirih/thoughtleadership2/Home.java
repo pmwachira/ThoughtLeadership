@@ -185,6 +185,8 @@ public class Home  extends AppCompatActivity
 
                 }
             }).show();
+        }else if(id==R.id.nav_bout){
+            startActivity(new Intent(getBaseContext(),Bout.class));
         }
          /*
         else if(id==R.id.nav_downloads){

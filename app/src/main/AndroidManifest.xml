@@ -102,6 +102,8 @@
             android:parentActivityName=".Connect"/>
         <activity android:name=".tweets.TwitterMain"
             android:parentActivityName=".Connect"/>
+        <activity android:name=".Bout"
+            android:parentActivityName=".Home"/>
     </application>
 
 </manifest>
