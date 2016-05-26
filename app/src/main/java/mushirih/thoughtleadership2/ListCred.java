@@ -7,6 +7,7 @@ import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -35,12 +36,20 @@ public class ListCred extends AppCompatActivity
     SampleAdapter sampleAdapter;
     ProgressDialog pDialog;
     LinearLayout linearLayout;
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
+        swipeRefreshLayout= (SwipeRefreshLayout) findViewById(R.id.shhhhhwipe);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         context = this;
         linearLayout= (LinearLayout) findViewById(R.id.test);
         mProvider = new DrawableProvider(this);
@@ -213,6 +222,8 @@ public class ListCred extends AppCompatActivity
 
 
                 holder.pos.setText(item.getTitle());
+
+
 
             }
 

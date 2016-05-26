@@ -141,7 +141,7 @@ public class TwitterMain extends AppCompatActivity {
                         try{
                             startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("twitter://user?screen_name="+twitterScreenName)));
                         }catch (Exception E){
-                            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://twitter.com/#!/"+twitterScreenName)));
+                            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://twitter.com/"+twitterScreenName)));
                         }
                     }
                 });

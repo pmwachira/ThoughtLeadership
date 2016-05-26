@@ -104,7 +104,7 @@ public class Profs {
 
                 try {
                     name= jsonObj.getString("name");
-                    workTitle= jsonObj.getString("workTitle");
+                    workTitle= jsonObj.getString("title");
                     desc=jsonObj.getString("desc");
                 }catch (Exception e){
 
