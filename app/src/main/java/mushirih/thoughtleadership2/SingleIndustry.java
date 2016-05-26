@@ -122,7 +122,7 @@ public class SingleIndustry extends AppCompatActivity
         if(new SampleAdapter().getCount()<1){
             pDialog = new ProgressDialog(context);
 
-            pDialog.setMessage("Loading articles.Please wait ...");
+            pDialog.setMessage("Loading "+industries+" insights.Please wait ...");
             pDialog.setCancelable(false);
 //            pDialog.setIndeterminate(true);
 //              pDialog.setCancelable(false);
@@ -264,7 +264,7 @@ public class SingleIndustry extends AppCompatActivity
             intent.putExtra("download",item.getDownloadUrl());
             startActivity(intent);
         }else{
-            Intent restart=new Intent(this,MainActivity.class);
+            Intent restart=new Intent(this,SingleIndustry.class);
             restart.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(restart);
         }

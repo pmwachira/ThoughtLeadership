@@ -97,6 +97,7 @@
         <activity android:name=".ReportSingle"
             android:parentActivityName=".SingleIndustry"/>
         <activity android:name=".Email"
+            android:windowSoftInputMode="stateHidden|adjustResize"
             android:noHistory="true"
             android:parentActivityName=".Connect"/>
         <activity android:name=".tweets.TwitterMain"

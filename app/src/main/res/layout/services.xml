@@ -19,8 +19,9 @@
             app:popupTheme="@style/AppTheme.PopupOverlay">
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
+
+        <!--android:background="?attr/colorPrimary"-->
     <ImageView
-        android:background="?attr/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/service"/>

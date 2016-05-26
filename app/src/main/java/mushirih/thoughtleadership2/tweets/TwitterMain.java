@@ -58,7 +58,7 @@ public class TwitterMain extends AppCompatActivity {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                goog.setPadding(0, 4, 0, 0);
+               // goog.setPadding(0, 4, 0, 0);
                 swipe.setEnabled(firstVisibleItem == 0 ? true : false);
                 //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
             }

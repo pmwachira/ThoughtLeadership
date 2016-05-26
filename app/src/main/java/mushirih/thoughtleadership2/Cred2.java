@@ -86,7 +86,8 @@ public class Cred2 extends AppCompatActivity {
         title.setText(itemTitle);
 
         TextView desc= (TextView) findViewById(R.id.desc);
-//        desc.setText(description);
+      desc.setText(description);
+
     }
 
     @Override public boolean dispatchTouchEvent(MotionEvent motionEvent) {
