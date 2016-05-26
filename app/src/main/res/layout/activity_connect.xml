@@ -33,14 +33,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
- <android.support.v7.widget.RecyclerView
+ <mushirih.thoughtleadership2.GridRecyclerView
         android:id="@+id/myRecyclerView"
         android:layout_gravity="center_horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
+     android:layoutAnimation="@anim/grid_layout_animation"
         android:layout_marginTop="4dp">
-    </android.support.v7.widget.RecyclerView>
+    </mushirih.thoughtleadership2.GridRecyclerView>
     </RelativeLayout>
 
 

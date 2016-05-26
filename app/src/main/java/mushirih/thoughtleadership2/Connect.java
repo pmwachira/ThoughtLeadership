@@ -1,12 +1,15 @@
 package mushirih.thoughtleadership2;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
@@ -59,15 +62,16 @@ public class Connect extends AppCompatActivity {
         }
 
         recyclerView = (RecyclerView) findViewById(R.id.myRecyclerView);
-        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+//        RecyclerView.LayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+       // recyclerView.setLayoutManager(layoutManager);
 
 
         String TITLES[] = {"Visit website", "Facebook", "Twitter", "Youtube", "Linked In", "Call us", "Come to us","Write to us"};
         int ICONS[] = {R.drawable.web, R.drawable.facebook, R.drawable.tweet, R.drawable.youtube, R.drawable.linked, R.drawable.call, R.drawable.location,R.drawable.email};
-        int[]colors={Color.parseColor("#00338D"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#bb0000"),Color.parseColor("#007bb6"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#00338D")};
+        int[]colors={Color.parseColor("#00338D"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#bb0000"),Color.parseColor("#007bb6"),Color.parseColor("#3B5998"),Color.parseColor("#595d63"),Color.parseColor("#00338D")};
         adapter = new MyAdapterConnect(TITLES, ICONS,colors);
-        recyclerView.setAdapter(adapter);
+       // recyclerView.setAdapter(adapter);
         final GestureDetector gestureDetector = new GestureDetector(Connect.this, new GestureDetector.SimpleOnGestureListener() {
 
 
@@ -169,6 +173,23 @@ public class Connect extends AppCompatActivity {
             }
 
         });
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            setRecyclerAdapter(recyclerView);
+        }
+
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @Override public void onEnterAnimationComplete() {
+        super.onEnterAnimationComplete();
+        setRecyclerAdapter(recyclerView);
+        recyclerView.scheduleLayoutAnimation();
+    }
+
+    private void setRecyclerAdapter(RecyclerView recyclerView) {
+
+
+        recyclerView.setAdapter(adapter);
 
     }
     protected DialogInterface.OnClickListener mDialogListenerCall = new DialogInterface.OnClickListener() {
