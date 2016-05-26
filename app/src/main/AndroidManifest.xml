@@ -77,8 +77,13 @@
             android:screenOrientation="portrait"
             android:parentActivityName=".Home"
             android:theme="@style/AppTheme"/>
+        <!--<activity-->
+            <!--android:name=".Cred"-->
+            <!--android:parentActivityName=".ListCred"-->
+            <!--android:theme="@style/AppTheme"-->
+            <!-->-->
         <activity
-            android:name=".Cred"
+            android:name=".Cred2"
             android:parentActivityName=".ListCred"
             android:theme="@style/AppTheme"
             >

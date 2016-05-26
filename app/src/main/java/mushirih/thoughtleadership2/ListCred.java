@@ -2,7 +2,6 @@ package mushirih.thoughtleadership2;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -135,16 +134,18 @@ public class ListCred extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        /*ProfItem item = (ProfItem) listView.getItemAtPosition(position);
-
-            Intent intent = new Intent(this, Report.class);
-            intent.putExtra("title", item.getName());
-            intent.putExtra("content", item.getTitle());
-            intent.putExtra("region", item.getDownloadUrl());
-
+        ProfItem item = (ProfItem) listView.getItemAtPosition(position);
+/*
+            Intent intent = new Intent(this, Cred.class);
+            intent.putExtra("name", item.getName());
+            intent.putExtra("title", item.getTitle());
+            intent.putExtra("profPic", item.getDownloadUrl());
+            intent.putExtra("desc",item.getDesc());
             startActivity(intent);
-            */
-        startActivity(new Intent(getBaseContext(),Cred.class));
+        */
+
+//        startActivity(new Intent(getBaseContext(),Cred.class));
+        Cred2.navigate(this, view.findViewById(R.id.imageView), item);
 
     }
 
