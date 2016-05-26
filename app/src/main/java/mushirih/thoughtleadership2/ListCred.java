@@ -1,10 +1,12 @@
 package mushirih.thoughtleadership2;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +33,8 @@ public class ListCred extends AppCompatActivity
     DrawableProvider mProvider;
     Context context;
     SampleAdapter sampleAdapter;
+    ProgressDialog pDialog;
+    LinearLayout linearLayout;
 
 
     @Override
@@ -37,6 +42,7 @@ public class ListCred extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.app_bar_main);
         context = this;
+        linearLayout= (LinearLayout) findViewById(R.id.test);
         mProvider = new DrawableProvider(this);
         listView = (ListView) findViewById(R.id.listView);
          profs=new Profs(context);
@@ -54,11 +60,42 @@ public class ListCred extends AppCompatActivity
         getSupportActionBar().setTitle("Lead Profiles");
 
        listView.setAdapter(sampleAdapter);
+        loader(linearLayout);
         listView.setOnItemClickListener(this);
 
 
     }
+    private void loader(final LinearLayout test) {
+        if(new SampleAdapter().getCount()<1){
+            pDialog = new ProgressDialog(context);
+            pDialog.setCancelable(false);
 
+            pDialog.setMessage("Loading profiles.Please wait ...");
+//            pDialog.setIndeterminate(true);
+//              pDialog.setCancelable(false);
+            pDialog.show();
+            android.os.Handler handler=new android.os.Handler();
+            Runnable r =new Runnable() {
+                @Override
+                public void run() {
+                    SampleAdapter adapter=new SampleAdapter();
+                    //if(adapter.getCount()>0) {//-------------------------------TESTING THIS
+                    pDialog.dismiss();
+
+                    listView.setAdapter(adapter);
+                    if(listView.getAdapter().getCount()==0){
+                        test.setBackgroundResource(R.drawable.error);
+                        Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        // startActivity(new Intent(getBaseContext(),Home.class));
+
+                    }
+                    // }
+                }
+            };
+            handler.postDelayed(r, 5000);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

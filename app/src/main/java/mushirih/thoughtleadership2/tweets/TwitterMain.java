@@ -2,6 +2,7 @@ package mushirih.thoughtleadership2.tweets;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -23,7 +27,7 @@ public class TwitterMain extends AppCompatActivity {
    LinearLayout test;
     Handler handler;
     Runnable r;
-    ListView goo;
+    ListView goog,goo;
     ProgressDialog pDialog;
     final static String TWITTER_API_KEY = "96XLyNA3JYzDGgjqjX1O2lo3j";
     final static String TWITTER_API_SECRET = "wvEL3nh0kGgKFFXXNczfOmOOmyT7iBNnf2UVEzaNPOMQtAe7aC";
@@ -36,7 +40,7 @@ public class TwitterMain extends AppCompatActivity {
         setContentView(R.layout.twittermain);
         test= (LinearLayout) findViewById(R.id.test);
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.sw);
-        final ListView goog= (ListView) findViewById(R.id.listVV);
+         goog= (ListView) findViewById(R.id.listVV);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -46,6 +50,19 @@ public class TwitterMain extends AppCompatActivity {
             }
         });
         supportActionBar();
+        goog.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                goog.setPadding(0, 4, 0, 0);
+                swipe.setEnabled(firstVisibleItem == 0 ? true : false);
+                //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
+            }
+        });
 
         AndroidNetworkUtility androidNetworkUtility = new AndroidNetworkUtility();
         if (androidNetworkUtility.isConnected(this)) {
@@ -118,6 +135,16 @@ public class TwitterMain extends AppCompatActivity {
                 // callerActivity.setListAdapter(adapter);
                 //ListView lv = callerActivity.getListView();
                 goo.setDividerHeight(0);
+                goo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        try{
+                            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("twitter://user?screen_name="+twitterScreenName)));
+                        }catch (Exception E){
+                            startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("https://twitter.com/#!/"+twitterScreenName)));
+                        }
+                    }
+                });
                 //lv.setDivider(this.getResources().getDrawable(android.R.color.transparent));
 //                goo.setBackgroundColor(TwitterMain.this.getResources().getColor(R.color.colorAccent));//Change to twitter colors
                 pDialog.dismiss();

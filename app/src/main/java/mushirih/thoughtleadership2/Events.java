@@ -1,6 +1,7 @@
 package mushirih.thoughtleadership2;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,7 +29,8 @@ public class Events extends AppCompatActivity
     String EVENT_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/events.php";
     Context context;
     List<EventItem> items=new ArrayList<EventItem>();
-
+    RecyclerViewAdapterEvents adapter;
+    ProgressDialog pDialog;
 
 
     @Override
@@ -41,19 +43,13 @@ public class Events extends AppCompatActivity
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Events");
         context=this;
-
+         adapter=new RecyclerViewAdapterEvents(items,Events.this);
 
 
         recyclerView= (RecyclerView) findViewById(R.id.recyclerevents);
-        eventsSource=new EventsSource(context,EVENT_FEED);
+        loader(context);
 
-        for(int i=0;i<eventsSource.getCount();i++) {
-           items.add(eventsSource.getItem(i));
-         }
-        if(items.size()==0){
-            items.add(new EventItem("null","null","null","null","null","null","null"));
 
-        }
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.swipe);
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
          @Override
@@ -75,6 +71,39 @@ public class Events extends AppCompatActivity
 
 
     }
+
+    private void loader(Context context) {
+        eventsSource=new EventsSource(context,EVENT_FEED);
+        if(adapter.getItemCount()<1){
+            pDialog = new ProgressDialog(context);
+            pDialog.setCancelable(false);
+
+            pDialog.setMessage("Loading events.Please wait ...");
+//            pDialog.setIndeterminate(true);
+//              pDialog.setCancelable(false);
+            pDialog.show();
+            android.os.Handler handler=new android.os.Handler();
+            Runnable r =new Runnable() {
+                @Override
+                public void run() {
+                    setRecyclerAdapter(recyclerView);
+
+                    for(int i=0;i<eventsSource.getCount();i++) {
+                        items.add(eventsSource.getItem(i));
+                    }
+                    if(items.size()==0){
+                        items.add(new EventItem("null","null","null","null","null","null","null"));
+
+                    }
+                    pDialog.dismiss();
+
+                }
+            };
+            handler.postDelayed(r, 5000);
+
+
+        }
+    }
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override public void onEnterAnimationComplete() {
         super.onEnterAnimationComplete();
@@ -83,7 +112,7 @@ public class Events extends AppCompatActivity
     }
 
     private void setRecyclerAdapter(RecyclerView recyclerView) {
-        RecyclerViewAdapterEvents adapter=new RecyclerViewAdapterEvents(items,Events.this);
+
         adapter.setOnItemClickListener(this);
         recyclerView.setAdapter(adapter);
 

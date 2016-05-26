@@ -68,7 +68,8 @@ public class SingleIndustry extends AppCompatActivity
     int downloadError=0;
     String file;
     final static int uniqueID=6790000;
-    String URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
+    String URL_FED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
+    String URL_FEED2 = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
     private SearchView mSearchView;
     String industries="";
     int tester=0;
@@ -114,8 +115,8 @@ public class SingleIndustry extends AppCompatActivity
 
         listView= (ListView) findViewById(R.id.listView);
 
-
-        dataSource=new DataSource(this,URL_FEED);
+        dataSource=new DataSource(this,URL_FEED2);
+//        dataSource=new DataSource(this,URL_FEED+"?industry="+industries);
 
         listView.setAdapter(new SampleAdapter());
         if(new SampleAdapter().getCount()<1){
@@ -224,7 +225,8 @@ public class SingleIndustry extends AppCompatActivity
 //Toast.makeText(this,newText,Toast.LENGTH_SHORT).show();
         search=newText;
 
-        sorter=new SORTER(this,URL_FEED,newText);
+//        sorter=new SORTER(this,URL_FEED+"?industry="+industries,newText);
+        sorter=new SORTER(this,URL_FEED2,newText);
         listView.setAdapter(new SampleSORTEDAdapter());
 
         return false;

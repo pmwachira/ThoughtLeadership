@@ -65,7 +65,7 @@ public class Connect extends AppCompatActivity {
 
         String TITLES[] = {"Visit website", "Facebook", "Twitter", "Youtube", "Linked In", "Call us", "Come to us","Write to us"};
         int ICONS[] = {R.drawable.web, R.drawable.facebook, R.drawable.tweet, R.drawable.youtube, R.drawable.linked, R.drawable.call, R.drawable.location,R.drawable.email};
-        int[]colors={Color.parseColor("#000000"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#bb0000"),Color.parseColor("#007bb6"),Color.parseColor("#ffffff"),Color.parseColor("#ffffff"),Color.parseColor("#ffffff")};
+        int[]colors={Color.parseColor("#00338D"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#bb0000"),Color.parseColor("#007bb6"),Color.parseColor("#3B5998"),Color.parseColor("#00aced"),Color.parseColor("#00338D")};
         adapter = new MyAdapterConnect(TITLES, ICONS,colors);
         recyclerView.setAdapter(adapter);
         final GestureDetector gestureDetector = new GestureDetector(Connect.this, new GestureDetector.SimpleOnGestureListener() {

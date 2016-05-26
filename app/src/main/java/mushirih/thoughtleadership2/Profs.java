@@ -25,7 +25,7 @@ public class Profs {
 
     public static final int NO_NAVIGATION = -1;
     private static final String TAG=ListCred.class.getSimpleName();
-    private static final String  URL_FEED = "www.profiles I Will Make.com";
+    private static final String  URL_FEED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/profile.php?id=8448";
     private ArrayList<ProfItem> profSource;
     private DrawableProvider mProvider;
     private Context contextHere;
@@ -34,11 +34,11 @@ public class Profs {
         contextHere=context;
         mProvider = new DrawableProvider(context);
         cachee= AppController.getInstance().getRequestQueue().getCache();
-
+        profSource = new ArrayList<ProfItem>();
 
         loadCache(URL_FEED);
 
-        profSource = new ArrayList<ProfItem>();
+
          /*STATIC INIT
                 profSource.add(itemwithname("lol","lol","lol"));
                 */
@@ -98,19 +98,19 @@ public class Profs {
                 String name="";
 
                 String workTitle="";
-
+                String desc = "";
                 String displaypic = "";
                 String strip="";
 
                 try {
                     name= jsonObj.getString("name");
                     workTitle= jsonObj.getString("workTitle");
-                    displaypic= jsonObj.getString("displayPic");
+                    desc=jsonObj.getString("desc");
                 }catch (Exception e){
 
                 }
                 try {
-                    strip = jsonObj.getString("displaypic");
+                    strip = jsonObj.getString("displayPic");
                     displaypic = strip.replace("\\", "");
 
 
@@ -123,7 +123,7 @@ public class Profs {
 
 
 
-                profSource.add(itemwithname(name,workTitle,displaypic));
+                profSource.add(itemwithname(name,workTitle,displaypic,desc));
             }
 
         } catch (JSONException e) {
@@ -142,9 +142,9 @@ public class Profs {
     public ProfItem getItem(int position) {
         return profSource.get(position);
     }
-    public  ProfItem itemwithname(String nam, String titl, String pro) {
+    public  ProfItem itemwithname(String nam, String titl, String pro, String desc) {
         String name = null;
-
+        String descr=desc;
         String title=null;
         String prof=null;
 
@@ -153,7 +153,7 @@ public class Profs {
         title=titl;
         prof=pro;
 
- return new ProfItem(name,title,prof);
+ return new ProfItem(name,title,prof,descr);
     }
 
 
