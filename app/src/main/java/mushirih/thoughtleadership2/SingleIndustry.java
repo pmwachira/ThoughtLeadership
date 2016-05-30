@@ -78,6 +78,7 @@ public class SingleIndustry extends AppCompatActivity
     private SearchView mSearchView;
     String industries="";
     int tester=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,7 +152,7 @@ public class SingleIndustry extends AppCompatActivity
                     dataSource.refresh(URL_FEED2);
                     dataSource = new DataSource(SingleIndustry.this, URL_FEED2);
                     loader(test);
-                    listView.setAdapter(new SampleAdapter());
+                    listView.setAdapter(sampleAdapter);
                     listView.setOnItemClickListener(SingleIndustry.this);
                     // ((BaseAdapter)listView.getAdapter()).notifyDataSetChanged();
                     swipe.setRefreshing(false);
@@ -162,9 +163,9 @@ public class SingleIndustry extends AppCompatActivity
 
 
 
-
-        listView.setAdapter(new SampleAdapter());
-        if((tester=new SampleAdapter().getCount())<1){
+        listView.setAdapter(sampleAdapter);
+        tester=sampleAdapter.getCount();
+        if(tester<1){
             pDialog = new ProgressDialog(context);
 
             pDialog.setMessage("Loading "+industries+" insights.Please wait ...");
