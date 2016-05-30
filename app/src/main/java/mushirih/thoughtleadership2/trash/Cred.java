@@ -1,4 +1,4 @@
-package mushirih.thoughtleadership2;
+package mushirih.thoughtleadership2.trash;
 
 import android.content.Intent;
 import android.graphics.Paint;
@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
+
+import mushirih.thoughtleadership2.R;
 
 
 /**

@@ -31,14 +31,16 @@ import com.squareup.picasso.Picasso;
 public class Cred2 extends AppCompatActivity {
 
     private static final String EXTRA_IMAGE = "image";
-    private static final String EXTRA_TITLE = "name";
+    private static final String EXTRA_TITLE = "title";
+    private static final String EXTRA_NAME = "name";
     private static final String EXTRA_DESC = "desc";
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
     public static void navigate(AppCompatActivity activity, View transitionImage, ProfItem profItem) {
         Intent intent = new Intent(activity, Cred2.class);
         intent.putExtra(EXTRA_IMAGE, profItem.getDownloadUrl());
-        intent.putExtra(EXTRA_TITLE, profItem.getName());
+        intent.putExtra(EXTRA_TITLE, profItem.getTitle());
+        intent.putExtra(EXTRA_NAME, profItem.getName());
         intent.putExtra(EXTRA_DESC, profItem.getDesc());
 
         ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, transitionImage, EXTRA_IMAGE);
@@ -57,6 +59,7 @@ public class Cred2 extends AppCompatActivity {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+            String name=getIntent().getStringExtra(EXTRA_NAME);
         String itemTitle = getIntent().getStringExtra(EXTRA_TITLE);
         String description = getIntent().getStringExtra(EXTRA_DESC);
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
@@ -83,7 +86,10 @@ public class Cred2 extends AppCompatActivity {
         });
 
         TextView title = (TextView) findViewById(R.id.title);
-        title.setText(itemTitle);
+        title.setText(name);
+
+        TextView pos= (TextView) findViewById(R.id.pos);
+        pos.setText(itemTitle);
 
         TextView desc= (TextView) findViewById(R.id.desc);
       desc.setText(description);

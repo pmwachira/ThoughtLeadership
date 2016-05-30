@@ -119,7 +119,7 @@ public class SingleIndustry extends AppCompatActivity
 //        dataSource=new DataSource(this,URL_FEED+"?industry="+industries);
 
         listView.setAdapter(new SampleAdapter());
-        if(new SampleAdapter().getCount()<1){
+        if((tester=new SampleAdapter().getCount())<1){
             pDialog = new ProgressDialog(context);
 
             pDialog.setMessage("Loading "+industries+" insights.Please wait ...");
@@ -149,7 +149,6 @@ public class SingleIndustry extends AppCompatActivity
         }
 
         listView.setOnItemClickListener(this);
-        tester= listView.getAdapter().getCount();
 
     }
 

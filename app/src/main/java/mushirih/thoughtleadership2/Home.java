@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import mushirih.thoughtleadership2.trash.Cred;
+
 /**
  * Created by p-tah on 09/02/2016.
  */

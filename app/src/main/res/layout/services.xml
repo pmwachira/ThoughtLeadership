@@ -40,7 +40,7 @@
         <TextView
             android:layout_marginTop="12dp"
             android:textColor="#000"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/service_desc"
@@ -59,8 +59,9 @@
         android:clickable="true"
         android:onClick="toggleContents"/>
     <TextView
+
         android:layout_margin="16dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contents"
@@ -80,7 +81,7 @@
         android:onClick="toggleContents"/>
     <TextView
         android:layout_margin="16dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contents2"
@@ -100,7 +101,7 @@
         />
     <TextView
         android:layout_margin="16dp"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/contents3"
