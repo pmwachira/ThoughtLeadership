@@ -116,6 +116,10 @@ public class SingleIndustry extends AppCompatActivity
         listView= (ListView) findViewById(R.id.listView);
 
         dataSource=new DataSource(this,URL_FEED2);
+        //TODO
+        //insert null check for loader->MAIN ACTIVITY
+
+
 //        dataSource=new DataSource(this,URL_FEED+"?industry="+industries);
 
         listView.setAdapter(new SampleAdapter());

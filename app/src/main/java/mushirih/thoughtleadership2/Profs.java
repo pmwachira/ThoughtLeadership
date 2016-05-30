@@ -157,5 +157,8 @@ public class Profs {
     }
 
 
-
+    public void refresh() {
+        cachee.clear();
+        loadCache(URL_FEED);
+    }
 }
