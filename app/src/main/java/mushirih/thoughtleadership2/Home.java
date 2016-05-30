@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Date;
+
 import mushirih.thoughtleadership2.trash.Cred;
 
 /**
@@ -57,7 +59,13 @@ public class Home  extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Date date=new Date(System.currentTimeMillis());
+        if( date.getYear()>115 && date.getMonth()>3) {
+
+            navigationView.getMenu().findItem(R.id.nav_bout).setVisible(true);
+        }
         navigationView.setNavigationItemSelectedListener(this);
+
 
 
 
