@@ -12,21 +12,26 @@ import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -68,7 +73,7 @@ public class SingleIndustry extends AppCompatActivity
     int downloadError=0;
     String file;
     final static int uniqueID=6790000;
-
+    SampleAdapter sampleAdapter;
     String URL_FEED2 = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
     private SearchView mSearchView;
     String industries="";
@@ -79,6 +84,9 @@ public class SingleIndustry extends AppCompatActivity
         setContentView(R.layout.app_bar_main);
         final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
+        dataSource=new DataSource(this,URL_FEED2);
+        //        dataSource=new DataSource(this,URL_FEED+"?industry="+industries);
+        sampleAdapter=new SampleAdapter();
         mProvider = new DrawableProvider(context);
         desc= (TextView) findViewById(R.id.desc);
         desc.setTextColor(Color.BLACK);
@@ -114,13 +122,46 @@ public class SingleIndustry extends AppCompatActivity
 
 
         listView= (ListView) findViewById(R.id.listView);
+        final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.shhhhhwipe);
+        swipe.setEnabled(false);
+        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
 
-        dataSource=new DataSource(this,URL_FEED2);
-        //TODO
-        //insert null check for loader->MAIN ACTIVITY
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                listView.setPadding(0, 4, 0, 0);
+                swipe.setEnabled(firstVisibleItem == 0 ? true : false);
+                //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
+            }
+        });
+        swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo info = check.getActiveNetworkInfo();
+                TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+                if (info == null || !info.isConnected() || tm.getDataState() != tm.DATA_CONNECTED) {
+                    Toast.makeText(getApplicationContext(), "Please check yout internet connection and try again", Toast.LENGTH_LONG).show();
+                    swipe.setRefreshing(false);
+                } else {
+                    test.setBackgroundColor(0);
+                    dataSource.refresh(URL_FEED2);
+                    dataSource = new DataSource(SingleIndustry.this, URL_FEED2);
+                    loader(test);
+                    listView.setAdapter(new SampleAdapter());
+                    listView.setOnItemClickListener(SingleIndustry.this);
+                    // ((BaseAdapter)listView.getAdapter()).notifyDataSetChanged();
+                    swipe.setRefreshing(false);
+                }
+            }
+        });
 
 
-//        dataSource=new DataSource(this,URL_FEED+"?industry="+industries);
+
+
 
         listView.setAdapter(new SampleAdapter());
         if((tester=new SampleAdapter().getCount())<1){
@@ -154,6 +195,39 @@ public class SingleIndustry extends AppCompatActivity
 
         listView.setOnItemClickListener(this);
 
+    }
+    private void loader(final LinearLayout test) {
+        if(new SampleAdapter().getCount()<1){
+            pDialog = new ProgressDialog(context);
+            pDialog.setCancelable(false);
+
+            pDialog.setMessage("Loading "+industries+" insights.Please wait ...");
+//            pDialog.setIndeterminate(true);
+//              pDialog.setCancelable(false);
+            pDialog.show();
+            android.os.Handler handler=new android.os.Handler();
+            Runnable r =new Runnable() {
+                @Override
+                public void run() {
+                    SampleAdapter adapter=new SampleAdapter();
+                    //if(adapter.getCount()>0) {//-------------------------------TESTING THIS
+                    pDialog.dismiss();
+
+                    listView.setAdapter(adapter);
+
+                    if(listView.getAdapter().getCount()==0){
+                        test.setBackgroundResource(R.drawable.error);
+                        Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
+                                .setAction("Action", null).show();
+                        // startActivity(new Intent(getBaseContext(),Home.class));
+
+                    }
+                    // }
+
+                }
+            };
+            handler.postDelayed(r, 5000);
+        }
     }
 
     private void toolbarinit(String industries) {
