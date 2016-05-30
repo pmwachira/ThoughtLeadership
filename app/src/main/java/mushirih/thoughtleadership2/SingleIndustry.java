@@ -68,7 +68,7 @@ public class SingleIndustry extends AppCompatActivity
     int downloadError=0;
     String file;
     final static int uniqueID=6790000;
-    String URL_FED = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
+
     String URL_FEED2 = "http://192.185.77.246/~muchiri/thoughtleadership/scripts/industries.php";
     private SearchView mSearchView;
     String industries="";
