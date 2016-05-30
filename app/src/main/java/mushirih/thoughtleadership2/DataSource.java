@@ -47,6 +47,7 @@ public class DataSource {
 
     public void refresh(String URL_FEED){
         cache.clear();
+
         loadCache(URL_FEED);
     }
     public void loadCache(String URL_FEED) {

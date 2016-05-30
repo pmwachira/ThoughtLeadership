@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity
     private SearchView mSearchView;
     DrawableProvider mProvider;
     Context context;
+    SampleAdapter sampleAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +83,7 @@ public class MainActivity extends AppCompatActivity
         final LinearLayout test= (LinearLayout) findViewById(R.id.test);
         context=this;
         dataSource = new DataSource(MainActivity.this, URL_FEED);
+        sampleAdapter=new SampleAdapter();
         mProvider = new DrawableProvider(this);
         listView= (ListView) findViewById(R.id.listView);
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.shhhhhwipe);
@@ -148,9 +150,10 @@ public class MainActivity extends AppCompatActivity
 //
 //
 //
-        listView.setAdapter(new SampleAdapter());
-        loader(test);
-
+        listView.setAdapter(sampleAdapter);
+        if(sampleAdapter.getCount()==0) {
+            loader(test);
+        }
         listView.setOnItemClickListener(this);
 
         int popeye=dataSource.getCount();
@@ -183,6 +186,7 @@ public class MainActivity extends AppCompatActivity
                         pDialog.dismiss();
 
                         listView.setAdapter(adapter);
+
                         if(listView.getAdapter().getCount()==0){
                             test.setBackgroundResource(R.drawable.error);
                             Snackbar.make(test, "Please check your internet connection and try again", Snackbar.LENGTH_LONG)
@@ -191,6 +195,7 @@ public class MainActivity extends AppCompatActivity
 
                         }
                    // }
+
                 }
             };
         handler.postDelayed(r, 5000);
