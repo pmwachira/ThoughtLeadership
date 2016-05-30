@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         mProvider = new DrawableProvider(this);
         listView= (ListView) findViewById(R.id.listView);
         final SwipeRefreshLayout swipe=(SwipeRefreshLayout)findViewById(R.id.shhhhhwipe);
-        swipe.setEnabled(false);
+
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                                            NetworkInfo info = check.getActiveNetworkInfo();
                                            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
                                            if (info == null || !info.isConnected() || tm.getDataState() != tm.DATA_CONNECTED) {
-                                             Toast.makeText(getApplicationContext(),"Please check yout internet connection and try again",Toast.LENGTH_LONG).show();
+                                             Toast.makeText(getApplicationContext(),"Please check your internet connection and try again",Toast.LENGTH_LONG).show();
                                                swipe.setRefreshing(false);
                                            }else {
                                                test.setBackgroundColor(0);
