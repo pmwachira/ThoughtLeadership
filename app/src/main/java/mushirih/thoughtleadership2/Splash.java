@@ -54,10 +54,13 @@ public class Splash extends AppCompatActivity {
 //     startActivity(newIntent);
 // }
 }
+
+
     @Override
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(runnable);
         finish();
     }
+
 }
