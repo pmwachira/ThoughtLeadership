@@ -96,22 +96,21 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                listView.setPadding(0,4,0,0);
-                swipe.setEnabled(firstVisibleItem==0? true:false);
-              //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
+                listView.setPadding(0, 4, 0, 0);
+                swipe.setEnabled(firstVisibleItem == 0 ? true : false);
+                //  swipe.setEnabled(listView.getFirstVisiblePosition()==0&&listView.getChildAt(0).getTop()==0);
             }
         });
 
         swipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                                        @Override
                                        public void onRefresh() {
+
                                            ConnectivityManager check = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
                                            NetworkInfo info = check.getActiveNetworkInfo();
                                            TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                                           if (info == null || !info.isConnected() || tm.getDataState() != tm.DATA_CONNECTED) {
-                                             Toast.makeText(getApplicationContext(),"Please check your internet connection and try again",Toast.LENGTH_LONG).show();
-                                               swipe.setRefreshing(false);
-                                           }else {
+                                           if (info != null || info.isConnected() || tm.getDataState() == tm.DATA_CONNECTED) {
+
                                                test.setBackgroundColor(0);
                                                dataSource.refresh(URL_FEED);
                                                dataSource = new DataSource(MainActivity.this, URL_FEED);
@@ -119,6 +118,9 @@ public class MainActivity extends AppCompatActivity
                                                listView.setAdapter(new SampleAdapter());
                                                listView.setOnItemClickListener(MainActivity.this);
                                                // ((BaseAdapter)listView.getAdapter()).notifyDataSetChanged();
+                                               swipe.setRefreshing(false);
+                                           }else {
+                                               Toast.makeText(getApplicationContext(),"Please check your internet connection and try again",Toast.LENGTH_LONG).show();
                                                swipe.setRefreshing(false);
                                            }
                                        }
@@ -133,23 +135,7 @@ public class MainActivity extends AppCompatActivity
 
         nM = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         nM.cancel(uniqueID);
-        dataSource=new DataSource(this,URL_FEED);
 
-//         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                Snackbar.make(view, "SEARCH ACTION GOES HERE", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
-
-//SHOW PROGRESS BAR
-
-//
-//
-//
         listView.setAdapter(sampleAdapter);
         if(sampleAdapter.getCount()==0) {
             loader(test);
@@ -168,6 +154,7 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
     private void loader(final LinearLayout test) {
         if(new SampleAdapter().getCount()<1){
             pDialog = new ProgressDialog(context);
@@ -181,11 +168,11 @@ public class MainActivity extends AppCompatActivity
             Runnable r =new Runnable() {
                 @Override
                 public void run() {
-                   SampleAdapter adapter=new SampleAdapter();
+                   SampleAdapter adapter22=new SampleAdapter();
                     //if(adapter.getCount()>0) {//-------------------------------TESTING THIS
                         pDialog.dismiss();
 
-                        listView.setAdapter(adapter);
+                        listView.setAdapter(adapter22);
 
                         if(listView.getAdapter().getCount()==0){
                             test.setBackgroundResource(R.drawable.error);
