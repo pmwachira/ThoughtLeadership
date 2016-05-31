@@ -1,25 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:background="#fff"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".Home">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+
+
+    </android.support.design.widget.AppBarLayout>
+<RelativeLayout
+    android:background="#0300fe"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     xmlns:android="http://schemas.android.com/apk/res/android" >
-<VideoView
-   android:layout_gravity="center_vertical"
-    android:layout_width="match_parent"
+    <ImageView
+    android:src="@drawable/splash"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:id="@+id/imagesplash"
     android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
+    android:layout_centerHorizontal="true" />
+<!--<VideoView-->
+   <!--android:layout_gravity="center_vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_centerHorizontal="true"-->
 
-    android:id="@+id/spl"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    <!--android:id="@+id/spl"-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android" />-->
 
-   </FrameLayout>
-    <!--<ImageView-->
-        <!--android:src="@mipmap/spash"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:id="@+id/imagesplash"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_centerHorizontal="true" />-->
+   </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
