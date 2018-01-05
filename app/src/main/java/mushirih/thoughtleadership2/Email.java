@@ -20,7 +20,7 @@ import java.lang.reflect.Field;
  * Created by p-tah on 22/02/2016.
  */
 public class Email extends AppCompatActivity {
-    String[] email_addresses = {"Advisory","Audit services", "Tax", "Careers", "Other"};
+    String[] email_addresses = {"Classified Ads","Business Space Administrator", "Sales & Marketing"};
     Spinner spinnerDropdown;
     String sendTo="";
     String name="";
@@ -53,46 +53,31 @@ public class Email extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,R.layout.support_simple_spinner_dropdown_item,email_addresses);
         spinnerDropdown = (Spinner) findViewById(R.id.spinner);
-        final Button btnSend = (Button) findViewById(R.id.submit);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, email_addresses);
         spinnerDropdown.setAdapter(adapter);
         spinnerDropdown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                final int sid = spinnerDropdown.getSelectedItemPosition();
-                if (sid != 4) {
-                    opt.setVisibility(View.GONE);
-                }
-
-                switch (sid) {
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
                     case 0:
-                        sendTo = "mushirih@gmail.com";
+                        sendTo="ads@xpatlink.info";
                         break;
                     case 1:
-                        sendTo = "pmwachira@gmail.com";
-                        break;
-                    case 4:
-
-                        opt.setVisibility(View.VISIBLE);
-                        sendTo = "pmwachira@gmail.com";
+                        sendTo="info@xpatlink.info";
                         break;
                     default:
-
-                        sendTo = "pmwachira@gmail.com";
-                        break;
-
+                        sendTo="sales@xpatlink.info";
                 }
-                //  Toast.makeText(getApplicationContext(), "Write email to : " + email_addresses[sid],
-                //      Toast.LENGTH_SHORT).show();
-
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                sendTo = "pmwachira@gmail.com";
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
+        final Button btnSend = (Button) findViewById(R.id.submit);
+
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -114,7 +99,7 @@ public class Email extends AppCompatActivity {
                 intent.setType("message/rfc822");
                 intent.putExtra(Intent.EXTRA_EMAIL, new String[]{sendTo}); // or just "mailto:" for blank
                 intent.putExtra(Intent.EXTRA_SUBJECT, heading);
-                intent.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+                intent.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from Xpat Link Magazine Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
                 try {
                     intent.setPackage("com.google.android.gm");
@@ -124,7 +109,7 @@ public class Email extends AppCompatActivity {
                     Intent intent2 = new Intent(Intent.ACTION_SENDTO); // it's not ACTION_SEND
                     intent2.setType("text/plain");
                     intent2.putExtra(Intent.EXTRA_SUBJECT, heading);
-                    intent2.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from KPMG EA Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
+                    intent2.putExtra(Intent.EXTRA_TEXT, "Message from : " + name + "\n\n" + mailing + "\n\n Sent from Xpat Link Magazine Android App. Available on https://play.google.com/store/apps/details?id=mushirih.thoughtleadership2;hl=en");
                     intent2.setData(Uri.parse("mailto:" + sendTo)); // or just "mailto:" for blank
                     intent2.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // this will make such that when user returns to your app, your app is displayed, instead of the email app.
                     startActivity(intent2);

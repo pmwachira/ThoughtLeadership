@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="call">
-        <item>Reception - 0700111111</item>
-        <item>Data &amp; Analytics - 0712222222</item>
-        <item>Risk Consulting - 0701666345</item>
+        <item>Classified Ads</item>
+        <item>Business Space Administrator</item>
+        <item>Sales &amp; Marketing</item>
     </string-array>
     <string-array name="interest_options">
         <item>Select All</item>

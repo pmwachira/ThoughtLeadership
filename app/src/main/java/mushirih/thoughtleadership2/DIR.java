@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,7 +41,7 @@ public class DIR extends AppCompatActivity {
 
         }
         try {
-            File root=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/KPMG KENYA");
+            File root=new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/XpatLink");
             ListDir(root);
         }catch (Exception e){
             fileList.add("You have not downloaded any article");
@@ -55,7 +56,7 @@ public class DIR extends AppCompatActivity {
         fileList.clear();
         for(File file:files){
             fileList.add(file.getPath()/*.substring(31)*/);
-            dList.add(file.getPath().substring(31));
+            dList.add(file.getPath().substring(29));
         }
         final ArrayAdapter<String> directoryList=new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,fileList);
         final ArrayAdapter<String> dList2=new ArrayAdapter<String>(this,android.R.layout.simple_expandable_list_item_1,dList);
@@ -64,6 +65,7 @@ public class DIR extends AppCompatActivity {
         XP.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //Log.d("WANTED URI",""+Uri.fromFile(new File(directoryList.getItem(position)+"")));
                 Intent pdf = new Intent();
                 pdf.setAction(Intent.ACTION_VIEW);
                 pdf.setDataAndType(Uri.fromFile(new File(directoryList.getItem(position))), "application/pdf");

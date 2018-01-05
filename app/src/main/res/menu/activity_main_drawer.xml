@@ -5,28 +5,19 @@
             android:title="Menu">
             <menu>
  <item android:id="@+id/nav_insights" android:icon="@android:drawable/ic_menu_view"
-            android:title="Insights" />
+            android:title="Premium Ads" />
 
-        <item android:id="@+id/nav_industries" android:icon="@android:drawable/ic_menu_preferences"
-            android:title="Industries" />
-                <item android:id="@+id/nav_interest" android:icon="@android:drawable/ic_input_add"
-                    android:title="Topics of Interest" />
-    <item android:id="@+id/nav_service" android:icon="@android:drawable/ic_popup_disk_full"
-        android:title="Services" />
+        <item android:id="@+id/nav_industries" android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="All Ads" />
+                <item android:id="@+id/nav_interest" android:icon="@android:drawable/sym_action_chat"
+                    android:title="Xpression" />
+    <item android:id="@+id/nav_service" android:icon="@android:drawable/ic_menu_today"
+        android:title="Events" />
 
-    <!--<item android:id="@+id/nav_events" android:icon="@android:drawable/ic_menu_my_calendar"-->
-        <!--android:title="Events" />-->
-
-
-    <item android:id="@+id/nav_careers" android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="Careers" />
-
-
-
-    <item android:id="@+id/nav_about" android:icon="@android:drawable/ic_menu_help"
-        android:title="About KPMG East Africa" />
+    <item android:id="@+id/nav_about" android:icon="@android:drawable/btn_star_big_on"
+        android:title="Place Ad" />
     <item android:id="@+id/nav_contact" android:icon="@android:drawable/ic_menu_call"
-        android:title="Contact" />
+        android:title="Contact Us" />
 </menu>
     </item>
     </group>
@@ -45,15 +36,15 @@
 
         -->
         <item
-        android:title="Lead Profiles"
+        android:title="Magazine copies"
         android:id="@+id/nav_cred">
     </item>
         <item
-            android:title="Your Downloads"
+            android:title="Xpat Downloads"
             android:id="@+id/nav_d">
         </item>
         <item
-            android:title="Disclaimer"
+            android:title="Terms and Conditions"
             android:id="@+id/nav_disclaimer">
         </item>
         <item

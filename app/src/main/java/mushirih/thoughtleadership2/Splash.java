@@ -5,6 +5,10 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.database.FirebaseDatabase;
+
+import mushirih.thoughtleadership2.intro.WelcomeActivity;
+
 /**
  * Created by p-tah on 25/01/2016.
  */
@@ -14,7 +18,7 @@ public class Splash extends AppCompatActivity {
     Runnable runnable=new Runnable() {
         @Override
         public void run() {
-           Intent newIntent=new Intent(getBaseContext(), Home.class);
+           Intent newIntent=new Intent(getBaseContext(),WelcomeActivity.class);
             startActivity(newIntent);
             finish();
         }
@@ -22,7 +26,7 @@ public class Splash extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
         setContentView(R.layout.splash);
 //        ImageView splash= (ImageView) findViewById(R.id.imagesplash);
 //        Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.clockwise);

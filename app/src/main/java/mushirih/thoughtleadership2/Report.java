@@ -272,7 +272,7 @@ public class Report extends AppCompatActivity {
     private void displayNotification() {
 
         NotificationCompat.Builder mBuilder= (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.actionbar)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("KPMG download complete")
                 .setContentText("PDF has been downloaded to your collection")
                 .setAutoCancel(true)

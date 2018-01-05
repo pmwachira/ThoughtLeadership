@@ -17,13 +17,13 @@
 
     </android.support.design.widget.AppBarLayout>
 <RelativeLayout
-    android:background="#0300fe"
+    android:background="#3c3f41"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <ImageView
-    android:src="@drawable/splash"
+    android:src="@drawable/xpat_link_logo"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/imagesplash"

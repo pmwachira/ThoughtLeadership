@@ -22,7 +22,7 @@
 
         <RelativeLayout
             android:clickable="true"
-            android:onClick="industries"
+            android:onClick="articles"
             android:layout_marginBottom="6dp"
             android:id="@+id/industries"
             android:layout_width="match_parent"
@@ -43,12 +43,12 @@
                 android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Industries"/>
+                android:text="All Ads"/>
 
         </RelativeLayout>
         <RelativeLayout
             android:clickable="true"
-            android:onClick="articles"
+            android:onClick="industries"
             android:layout_marginBottom="6dp"
             android:id="@+id/articles"
             android:layout_width="match_parent"
@@ -75,7 +75,7 @@
                 android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Articles and publications"/>
+                android:text="Expression"/>
         </RelativeLayout>
         <RelativeLayout
             android:onClick="services"
@@ -100,7 +100,7 @@
                 android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Services"/>
+                android:text="Events"/>
 
 
         </RelativeLayout>
@@ -112,29 +112,10 @@
         android:id="@+id/bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:weightSum="3"
+        android:weightSum="2"
         android:background="#fff"
         android:orientation="horizontal">
-        <RelativeLayout
 
-            android:gravity="center_horizontal|center_vertical"
-            android:layout_weight="1"
-            android:id="@+id/about"
-            android:onClick="about"
-            android:layout_width="0dp"
-            android:clickable="true"
-            android:layout_height="match_parent"
-            android:background="#3750bc">
-            <TextView
-                android:id="@+id/abou"
-                android:textStyle="bold"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="About"/>
-
-        </RelativeLayout>
         <RelativeLayout
             android:layout_marginLeft="2dp"
             android:gravity="center_horizontal|center_vertical"
@@ -152,7 +133,7 @@
                 android:textSize="24sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Events"/>
+                android:text="Get Listed"/>
       </RelativeLayout>
     <RelativeLayout
 

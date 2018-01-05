@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -18,19 +19,58 @@ import java.util.List;
  */
 public class Industries extends AppCompatActivity implements RecyclerViewAdapter.OnItemClickListener {
  private static List<ViewModel> items=new ArrayList<>();
-    private static int icons[]={R.drawable.auto,R.drawable.pic,R.drawable.chem,R.drawable.capi,R.drawable.ener,
-            R.drawable.finan,R.drawable.food,R.drawable.publico,R.drawable.health,R.drawable.indust,
-           R.drawable.infra,R.drawable.insura,R.drawable.invest,R.drawable.life,R.drawable.media,
-           R.drawable.mining,R.drawable.retail,R.drawable.tech0,R.drawable.telle,R.drawable.transpo,
-           R.drawable.real};
-    private static String industries[]={"Automotive","Banking","Chemicals","Capital Markets","Energy",
-           "Financial Services","Food,Drinks & Consumer goods","Government & Public sector","Healthcare",
-            "Industrial Manufacturing","Infrastructure","Insurance","Investment Management","Life Sciences",
-            "Media","Mining","Retail","Technology","Telecom","Transport & Logistics","Real Estate"};
+    private static int icons[]={
+            R.drawable.chem,
+            R.drawable.capi,
+            R.drawable.ener,
+            R.drawable.finan,
+            R.drawable.food,
+            R.drawable.publico,
+            R.drawable.health,
+            R.drawable.indust,
+           R.drawable.infra,
+            R.drawable.insura,
+            R.drawable.invest,
+            R.drawable.life,
+            R.drawable.media,
+           R.drawable.mining,
+            R.drawable.retail,
+            R.drawable.tech0,
+            R.drawable.telle,
+            R.drawable.transpo,
+           R.drawable.real,
+            R.drawable.auto,
+            R.drawable.pic
+    };
+    private static String industries[]={
+            "Premium",
+            "Real Estate",
+            "Vehicles",
+            "Holidays",
+            "Services",
+            "Jobs",
+           "Mobiles & Tablets",
+            "Electronics & Appliances",
+            "Home & Lifestyle",
+            "Fashion & Wellbeing",
+            "Kids",
+            "Industrial Manufacturing",
+            "Infrastructure",
+            "Insurance",
+            "Investment Management",
+            "Life Sciences",
+            "Pets",
+            "Personals",
+            "Miscellaneous",
+            "CAT 0",
+            "CAT 1"
+    };
     static {
         for (int i=0;i<industries.length;i++){
             items.add(new ViewModel(industries[i],icons[i]));
+            Log.e("Model Size: ","::"+items.size());
         }
+        Log.e("Model Size: ","::"+items.size());
     }
 
     private View content;
@@ -45,11 +85,11 @@ public class Industries extends AppCompatActivity implements RecyclerViewAdapter
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Industries");
+        getSupportActionBar().setTitle("Categories");
 
 
         recyclerView= (RecyclerView) findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+       recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         content=findViewById(R.id.content);
 

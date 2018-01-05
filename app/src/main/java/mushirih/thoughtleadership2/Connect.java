@@ -92,21 +92,21 @@ public class Connect extends AppCompatActivity {
 
                     switch (pos) {
                         case 0:
-                            Intent web = new Intent(Intent.ACTION_VIEW, Uri.parse("http://kpmg.com/eastafrica/en/Pages/default.aspx"));
+                            Intent web = new Intent(Intent.ACTION_VIEW, Uri.parse("https://xpatlink.info/"));
                             startActivity(web);
                             break;
                         case 1:
                             try {
                                 Connect.this.getPackageManager().getPackageInfo("com.facebook.katana", 0);
-                                Intent fb = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/kpmgglobal"));
+                                Intent fb = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/XpatLink-821598091259313/?fref=ts"));
                                 startActivity(fb);
                             } catch (Exception f) {
-                                Intent fb = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/kpmgglobal"));
+                                Intent fb = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/XpatLink-821598091259313/?fref=ts"));
                                 startActivity(fb);
                             }
                             break;
                         case 2:
-                            startActivity(new Intent(getBaseContext(), TwitterMain.class));
+                            //working line////startActivity(new Intent(getBaseContext(), TwitterMain.class));
                             /*
                             try{
                                 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse("twitter://user?screen_name="+"mushirih")));
@@ -116,7 +116,7 @@ public class Connect extends AppCompatActivity {
 */
                             break;
                         case 3:
-                            Toast.makeText(getBaseContext(), "Opening KPMG Kenya on YouTube", Toast.LENGTH_SHORT).show();
+                            /*Toast.makeText(getBaseContext(), "Opening KPMG Kenya on YouTube", Toast.LENGTH_SHORT).show();
 
 
                             try {
@@ -125,9 +125,11 @@ public class Connect extends AppCompatActivity {
                             } catch (Exception e2) {
                                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/channel/UCzxpyR-Oi5PUsoQEdFPcf4Q")));
                             }
+                            */
                             break;
+
                         case 4:
-                            Uri uri = Uri.parse("http://www.linkedin.com/company/kpmg-kenya");
+                            Uri uri = Uri.parse("https://www.linkedin.com/company/1949542/");
                             Intent linkd = new Intent(Intent.ACTION_VIEW, uri);
                             startActivity(linkd);
 
@@ -144,7 +146,8 @@ public class Connect extends AppCompatActivity {
 
                             break;
                         case 6:
-                            Uri loc=Uri.parse("http://maps.google.com/maps?&daddr=-1.259728,36.777888 (ABC Place, Waiyaki Way, Nairobi, Kenya)");
+                            Uri loc=Uri.parse("geo:0,0?q=-1.325846,36.7156633(XpatLink)");
+
                             Intent i=new Intent(Intent.ACTION_VIEW,loc);
                             i.setPackage("com.google.android.apps.maps");
                             try {
@@ -183,7 +186,7 @@ public class Connect extends AppCompatActivity {
     @Override public void onEnterAnimationComplete() {
         super.onEnterAnimationComplete();
         setRecyclerAdapter(recyclerView);
-        recyclerView.scheduleLayoutAnimation();
+       // recyclerView.scheduleLayoutAnimation();
     }
 
     private void setRecyclerAdapter(RecyclerView recyclerView) {
@@ -199,15 +202,15 @@ public class Connect extends AppCompatActivity {
 
             switch (num){
                 case 0:
-                    number="0712613052";
+                    number="0728606192";
                     break;
                 case 1:
                     // Toast.makeText(getBaseContext(),"TWO SELECTED",Toast.LENGTH_SHORT).show();
-                    number="0712613052";
+                    number="0728606193";
                     break;
 
                 default:
-                    number="0712613052";
+                    number="0713373346";
                     break;
             }
 

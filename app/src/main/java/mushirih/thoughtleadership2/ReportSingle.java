@@ -260,7 +260,7 @@ public class ReportSingle  extends AppCompatActivity {
     private void displayNotification() {
 
         NotificationCompat.Builder mBuilder= (NotificationCompat.Builder) new NotificationCompat.Builder(this)
-                .setSmallIcon(R.mipmap.actionbar)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("KPMG download complete")
                 .setContentText("PDF has been downloaded to your collection")
                 .setAutoCancel(true)
@@ -277,8 +277,6 @@ public class ReportSingle  extends AppCompatActivity {
         notificationManager.notify(uniqueID, mBuilder.build());
 
     }
-
-
     protected Dialog onCreateDialog(int id) {
         switch (id) {
             case progress_bar_type: // we set this to 0

@@ -62,7 +62,7 @@ public class updateDataBG extends Service {
     private void displayNotification() {
     Notification.Builder mBuilder=
                 new Notification.Builder(this)
-                        .setSmallIcon(R.mipmap.notification)
+                        .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("KPMG East Africa")
                         //.setLargeIcon(BitmapFactory.decodeResource(getResources(),R.drawable.service))
                         .setContentText("New KPMG East Africa article published")
